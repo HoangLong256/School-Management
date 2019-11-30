@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddUnit">
+   <children>
+      <Label layoutX="190.0" layoutY="39.0" text="Add Unit" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="6.0" layoutY="300.0" prefHeight="70.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveAction" text="Save">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#closeAction" text="Close">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Label layoutX="14.0" layoutY="118.0" text="Unit Code" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="118.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="109.0" layoutY="109.0" prefHeight="35.0" prefWidth="347.0">
+         <children>
+            <TextField fx:id="shField" prefHeight="35.0" prefWidth="103.0" promptText="Code" />
+            <ComboBox fx:id="yearComboBox" prefHeight="35.0" prefWidth="127.0" promptText="Year" />
+            <TextField fx:id="numField" prefHeight="35.0" prefWidth="141.0" promptText="Digit" />
+         </children>
+      </HBox>
+      <Label layoutX="17.0" layoutY="180.0" text="Semester" AnchorPane.leftAnchor="17.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="semesterComboBox" layoutX="109.0" layoutY="180.0" prefHeight="35.0" prefWidth="119.0" promptText="Semester" />
+      <TextField fx:id="nameText" layoutX="17.0" layoutY="242.0" prefHeight="35.0" prefWidth="437.0" promptText="Unit Name" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="lecturerIDText" layoutX="16.0" layoutY="304.0" prefHeight="35.0" prefWidth="437.0" promptText="Lecturer ID" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="examinerIDText" layoutX="16.0" layoutY="366.0" prefHeight="35.0" prefWidth="437.0" promptText="Examiner ID" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+   </children>
+</AnchorPane>

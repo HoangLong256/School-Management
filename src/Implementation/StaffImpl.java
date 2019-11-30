@@ -1,0 +1,78 @@
+package Implementation;
+
+import Model.Course;
+import Model.Staff;
+import com.sun.source.tree.ReturnTree;
+
+import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
+
+public class StaffImpl {
+    /**
+     * This method helps to add course.
+     * @param staff - Contains all the details of staff such as id or name ,...
+     * @param staffMap - Contains units information in the staff map
+     * @return String - Contains "OK" or "Error"
+     */
+    public String addStaff(Staff staff, Map<Integer, Staff> staffMap) {
+        if(staffMap.containsKey(staff.getSid())) {
+            System.out.println("This course already being stored");
+            return "Error";
+        } else {
+            //Add course to map
+            staffMap.put(staff.getSid(), staff);
+            return "OK";
+        }
+    }
+
+    public void showAllStaff(Map<Integer, Staff> staffMap) {
+        Iterator<Map.Entry<Integer, Staff>> iterator = staffMap.entrySet().iterator();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (iterator.hasNext()){
+            Map.Entry<Integer, Staff> entry =  iterator.next();
+            Staff staff = entry.getValue();
+            stringBuilder.append(entry.getKey()).append('\t').append(staff.getName()).append('\n');
+        }
+        System.out.println(stringBuilder);
+    }
+
+    /**
+     * This method helps get staff by ID.
+     * @param sid - Contains all the details of staff such as id or name ,...
+     * @param staffMap - Contains units information in the staff map
+     * @return String - Contains "OK" or "Error"
+     */
+    public Staff getStaffByID(Integer sid, Map<Integer, Staff> staffMap) {
+        if(staffMap.containsKey(sid)) {
+            return staffMap.get(sid);
+
+        }
+        return null;
+    }
+    public void serializeStaff(Map<Integer, Staff> staffMap, String fileName) {
+        try {
+            ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream(fileName));
+            oes.writeObject(staffMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public Map<Integer, Staff>  deserializeStaff(String fileName) {
+        Map<Integer, Staff> staffMap = null ;
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+            staffMap = (Map<Integer, Staff>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("The current staff file is empty");
+        }
+        return staffMap;
+    }
+
+    public Boolean searchID(Integer sid, Map<Integer, Staff> staffMap) {
+        if(staffMap.containsKey(sid)) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+}

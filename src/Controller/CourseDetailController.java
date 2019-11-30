@@ -1,0 +1,82 @@
+package Controller;
+
+import Model.Course;
+import Model.Staff;
+import Model.Unit;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class CourseDetailController implements Initializable {
+
+    @FXML
+    private TextField codeField;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField diIDField;
+    @FXML
+    private TextField diNameField;
+    @FXML
+    private TextField deIDField;
+    @FXML
+    private TextField deNameField;
+    @FXML
+    private TextArea unitCodeArea;
+    @FXML
+    private TextArea unitDetailArea;
+    @FXML
+    private Button closeBtn;
+
+
+    static Course selectedCourse;
+    private ScreenController screenController = new ScreenController();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Staff director = selectedCourse.getDirector();
+        Staff deputy = selectedCourse.getDeputy();
+
+
+        codeField.setText(selectedCourse.getCode());
+        nameField.setText(selectedCourse.getName());
+        diIDField.setText(String.valueOf(director.getSid()));
+        diNameField.setText(director.getName());
+        deIDField.setText(String.valueOf(deputy.getSid()));
+        deNameField.setText(deputy.getName());
+        unitCodeArea.setText("Code \n");
+        unitDetailArea.setText("Name \n");
+
+        ArrayList<Unit> unitList = selectedCourse.getUnitList();
+        if(unitList != null) {
+            for(int i = 0; i < unitList.size(); i++) {
+                unitCodeArea.appendText("\n" + unitList.get(i).getCode());
+                unitDetailArea.appendText("\n" + unitList.get(i).getName());
+            }
+        }
+
+
+    }
+
+
+    public void closeDetail(ActionEvent actionEvent) {
+        screenController.closeStage((Stage) closeBtn.getScene().getWindow());
+    }
+
+    //Receive message from scene 1
+    public void transferCourse(Course course) {
+        //Display the message
+//        System.out.println(course.getCode());
+        selectedCourse = course;
+    }
+
+
+}

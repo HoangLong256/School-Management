@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.AddCourse">
+   <children>
+      <Label layoutX="240.0" layoutY="36.0" text="Add Course" AnchorPane.topAnchor="36.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="6.0" layoutY="300.0" prefHeight="70.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveAction" text="Save">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#closeAction" text="Close">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Label layoutX="14.0" layoutY="118.0" text="Course Code" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="118.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="155.0" layoutY="109.0" prefHeight="35.0" prefWidth="347.0">
+         <children>
+            <TextField fx:id="idText" prefHeight="35.0" prefWidth="351.0" promptText="Code" />
+         </children>
+      </HBox>
+      <Label layoutX="17.0" layoutY="180.0" text="Program" AnchorPane.leftAnchor="17.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameText" layoutX="15.0" layoutY="303.0" prefHeight="35.0" prefWidth="437.0" promptText="Course Name" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="directorIDText" layoutX="15.0" layoutY="365.0" prefHeight="35.0" prefWidth="437.0" promptText="Director ID" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <TextField fx:id="deputyIDText" layoutX="15.0" layoutY="427.0" prefHeight="35.0" prefWidth="437.0" promptText="Deputy ID" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <HBox layoutX="155.0" layoutY="171.0" prefHeight="35.0" prefWidth="347.0">
+         <children>
+            <RadioButton fx:id="underRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Undergraduate">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="postRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Postgraduate">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </HBox>
+      <Label layoutX="25.0" layoutY="242.0" text="Campus" AnchorPane.leftAnchor="15.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="155.0" layoutY="233.0" prefHeight="35.0" prefWidth="347.0">
+         <children>
+            <RadioButton fx:id="saigonRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Saigon">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="hanoiRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Hanoi">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
