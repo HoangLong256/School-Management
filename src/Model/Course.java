@@ -1,10 +1,5 @@
 package Model;
-/**
- * This class created to store information about course
- *
- * @author s3634096
- *
- */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

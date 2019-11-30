@@ -1,7 +1,7 @@
-package Controller;
+package View;
 
-import Controller.enumerated.level;
-import Controller.enumerated.semesterEnum;
+import View.enumerated.level;
+import View.enumerated.semesterEnum;
 import Implementation.UnitImpl;
 import Model.Staff;
 import Model.Unit;

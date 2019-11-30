@@ -2,12 +2,6 @@ package Model;
 
 import java.io.Serializable;
 
-/**
- * This class created to store information about unit
- *
- * @author s3634096
- *
- */
 
 public class Unit implements Serializable {
     // Define all required attributes of unit

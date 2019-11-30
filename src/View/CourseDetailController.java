@@ -1,4 +1,4 @@
-package Controller;
+package View;
 
 import Model.Course;
 import Model.Staff;

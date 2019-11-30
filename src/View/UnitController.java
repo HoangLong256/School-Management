@@ -1,6 +1,6 @@
-package Controller;
+package View;
 
-import Controller.enumerated.level;
+import View.enumerated.level;
 import Implementation.UnitImpl;
 import Model.Staff;
 import Model.Unit;
@@ -8,13 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -86,7 +84,7 @@ public class UnitController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("/View/unit.fxml"));
+//        FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("/FrontEnd/unit.fxml"));
 //        loader.setController(this);
 //        try {
 //            loader.load();

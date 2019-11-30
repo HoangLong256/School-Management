@@ -8,20 +8,10 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * This class created to implement the logic for class unit
- *
- * @author s3634096
- *
- */
+
 public class UnitImpl {
 
-    /**
-     * This method helps to add unit.
-     * @param unitDetails - Contains all the details of unit such as name , lecturer.
-     * @param unitMap - Contains units information in the map
-     * @return String - Contains "OK" or "Error"
-     */
+
     public String addUnit(Unit unitDetails, Map<String, Unit> unitMap) {
 
         if(!unitMap.isEmpty() && unitMap.containsKey(unitDetails.getCode())) {
@@ -33,12 +23,7 @@ public class UnitImpl {
     }
 
 
-    /**
-     * This method helps to delete unit details from the map.
-     * @param  uid -Contains unit ID information
-     * @param unitMap - Contains Unit Map
-     * @return String - Contains "OK" or "Error" or else
-     */
+
     public String deleteUnit(String uid,Map<String, Unit> unitMap) {
         String message;
         if(unitMap.isEmpty()) {
@@ -53,11 +38,7 @@ public class UnitImpl {
         //Return result as String
         return message;
     }
-    /**
-     * This method helps to show general info or detail of one single unit
-     * @param unitDetail - Contains information of a unit
-     * @return String - Contains "OK" or "Error" or else
-     */
+
     public void showUnit(Unit unitDetail) {
         System.out.println("Code: " + unitDetail.getCode().toString());
         System.out.println("Name: " + unitDetail.getName().toString());
@@ -65,12 +46,7 @@ public class UnitImpl {
         System.out.println("Lecturer: " + unitDetail.getLecturer().toString());
     }
 
-    /**
-     * This method helps to assign a staff as examiner.
-     * @param staff - Contains all the details of assigned staff member such as name or address
-     * @param unit - Contains all information of unit such as id or name
-     * @return String - Contains "OK" or "Error"
-     */
+
     public String assignExaminer(Staff staff, Unit unit) {
         // Implement all required condition
         if(unit.getExaminer() == null || unit.getExaminer().getSid() != staff.getSid()) {
@@ -79,12 +55,7 @@ public class UnitImpl {
         return "Error";
     }
 
-    /**
-     * This method helps to assign a staff as lecturer.
-     * @param staff - Contains all the details of assigned staff member such as name or address
-     * @param unit - Contains all information of unit such as id or name
-     * @return String - Contains "OK" or "Error"
-     */
+
     public String assignLecturer(Staff staff, Unit unit) {
         // Implement all required condition
         if(unit.getLecturer() == null || unit.getLecturer().getSid() != staff.getSid()) {

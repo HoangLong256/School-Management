@@ -1,4 +1,4 @@
-package Controller.enumerated;
+package View.enumerated;
 
 public enum semesterEnum {
     One, Two, Three;

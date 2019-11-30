@@ -1,27 +1,18 @@
-package Controller;
+package View;
 
-import Controller.enumerated.location;
 import Implementation.CourseImpl;
 import Model.Course;
 import Model.Staff;
-import Model.Unit;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 
-
-import java.awt.*;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -69,7 +60,6 @@ public class AddCourse implements Initializable{
     ToggleGroup campusGroup = new ToggleGroup();
     Alert alert = new Alert(Alert.AlertType.ERROR);
     String courseID, name, campusLocation, programType, directorID, deputyID, unitCode;
-    Course selectedCourse;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

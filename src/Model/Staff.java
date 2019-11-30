@@ -2,12 +2,6 @@ package Model;
 
 import java.io.Serializable;
 
-/**
- * This class created to store information about staff
- *
- * @author s3634096
- *
- */
 public class Staff implements Serializable {
 
 

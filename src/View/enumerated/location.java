@@ -1,4 +1,4 @@
-package Controller.enumerated;
+package View.enumerated;
 
 public enum location {
 

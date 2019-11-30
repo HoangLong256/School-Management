@@ -1,10 +1,8 @@
-package Controller;
+package View;
 
 import Implementation.StaffImpl;
 import Model.Staff;
-import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import javax.swing.text.TabableView;
 import java.net.URL;
 import java.util.*;
 

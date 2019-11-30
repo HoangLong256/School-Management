@@ -1,20 +1,16 @@
-package Controller;
+package View;
 
-import Controller.enumerated.location;
+import View.enumerated.location;
 import Implementation.CourseImpl;
 import Model.Course;
-import Model.Staff;
 import Model.Unit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -101,7 +97,6 @@ public class CourseController implements Initializable {
                     assignBtn.setDisable(false);
                     deleteBtn.setDisable(false);
                     viewBtn.setDisable(false);
-                    unitArea.setWrapText(true);
                 }
             });
             return row ;

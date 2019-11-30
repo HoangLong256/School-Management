@@ -86,7 +86,7 @@
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
                               </HBox>
-                              <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#viewDetail" prefHeight="27.0" prefWidth="346.0" text="View Detail">
+                              <Button fx:id="viewBtn" mnemonicParsing="false" onAction="#viewDetail" prefHeight="27.0" prefWidth="346.0" text="FrontEnd Detail">
                                  <VBox.margin>
                                     <Insets left="15.0" />
                                  </VBox.margin>

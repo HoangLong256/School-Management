@@ -1,13 +1,10 @@
-package Controller;
+package View;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class ScreenController {
 
@@ -19,7 +16,7 @@ public class ScreenController {
         Scene scene = null;
 
         try {
-            scene = new Scene(FXMLLoader.load(getClass().getResource("/View/" + filename)));
+            scene = new Scene(FXMLLoader.load(getClass().getResource("/FrontEnd/" + filename)));
         } catch (IOException e) {
             e.printStackTrace();
         }
