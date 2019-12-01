@@ -1,5 +1,6 @@
 package View;
 
+import Controller.CourseControl;
 import Implementation.CourseImpl;
 import Model.Course;
 import Model.Staff;
@@ -21,7 +22,8 @@ public class AddCourse implements Initializable{
     private ScreenController screenController =  new ScreenController();
     private StaffController staffController =  new StaffController();
     private UnitController unitController = new UnitController();
-    static Map<String, Course> courseMap = new HashMap<>();
+    private CourseControl courseControl = CourseControl.getInstance();
+    private Map<String, Course> courseMap = courseControl.getCourseMap();
     static CourseImpl courseImpl = new CourseImpl();
     private ObservableList<Course> courseData ;
     private List<Course> courseList;

@@ -36,14 +36,14 @@ public class CourseImpl {
      * @param course - Contains all information of course such as unitList or code
      * @return String - Contains "OK" or "Error"
      */
-    public String assignUnit(Unit unitDetail, Course course) {
-//        if (course.getUnitList().contains(unitDetail)) {
-////            System.out.println("This unit already belong to this course");
-//            return "Error";
-//        } else {
-            course.getUnitList().add(unitDetail);
-//        }
-        return "OK";
+    public Boolean assignUnit(Unit unitDetail, Course course) {
+        if (course.getUnitList().contains(unitDetail)) {
+            System.out.println("This unit already belong to this course");
+            return Boolean.FALSE;
+        }
+
+        course.getUnitList().add(unitDetail);
+        return Boolean.TRUE;
     }
 
     /**
@@ -98,15 +98,16 @@ public class CourseImpl {
      * @param courseMap - Contains all information of course such as unitList or code
      * @return String - Contains "OK" or "Error" or else
      */
-    public String deleteCourse(String code,Map<String, Course> courseMap) {
+    public Boolean deleteCourse(String code,Map<String, Course> courseMap) {
         if(courseMap.isEmpty()) {
-            return "There is currently none added unit";
+            System.out.println("There is currently none added unit");
+            return Boolean.FALSE;
         }
         if(courseMap.containsKey(code)) {
             courseMap.remove(code);
-            return "OK";
+            return Boolean.TRUE;
         } else {
-            return "Error";
+            return Boolean.FALSE;
         }
     }
 

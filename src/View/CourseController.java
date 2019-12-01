@@ -1,7 +1,7 @@
 package View;
 
+import Controller.CourseControl;
 import View.enumerated.location;
-import Implementation.CourseImpl;
 import Model.Course;
 import Model.Unit;
 import javafx.collections.FXCollections;
@@ -17,12 +17,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class CourseController implements Initializable {
-
+    private CourseControl courseControl = CourseControl.getInstance();
     private ScreenController screenController =  new ScreenController();
     private StaffController staffController =  new StaffController();
     private UnitController unitController = new UnitController();
-    static Map<String, Course> courseMap = new HashMap<>();
-    static CourseImpl courseImpl = new CourseImpl();
+    private Map<String, Course> courseMap = courseControl.getCourseMap();
     private ObservableList<Course> courseData ;
     private List<Course> courseList;
 //     Generate a constructor for the class CourseController
@@ -57,11 +56,7 @@ public class CourseController implements Initializable {
     @FXML
     private TableColumn<Course, String> programColumn;
     @FXML
-    private TextArea courseArea;
-    @FXML
     private Button viewBtn;
-    @FXML
-    private TextArea unitArea;
     @FXML
     private TextField unitField;
     @FXML
@@ -80,8 +75,7 @@ public class CourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        courseMap = courseImpl.deserializeCourse("course.txt");
-        System.out.println("Course deserialize done");
+        courseMap = courseControl.loadData();
 
         assignBtn.setDisable(true);
         deleteBtn.setDisable(true);
@@ -105,21 +99,10 @@ public class CourseController implements Initializable {
 
 
 
-    /**
-     * This method called when Add Course button pressed
-     * Purpose: Add course to SST system
-     * @return String - Contains "OK" or "Error"
-     */
-    public String addCourse(ActionEvent actionEvent) {
-        return "Ok";
-    }
 
-    public void clearForm(ActionEvent actionEvent) {
-        clear();
-    }
 
     public void loadAction(ActionEvent actionEvent) {
-        courseMap = courseImpl.deserializeCourse("course.txt");
+        courseMap = courseControl.loadData();
 
         // Transform map to array list
         courseList = new ArrayList<Course>(courseMap.values());
@@ -138,7 +121,8 @@ public class CourseController implements Initializable {
     }
 
     public void deleteCourse(ActionEvent actionEvent) {
-        courseImpl.deleteCourse(selectedCourse.getCode(), courseMap);
+        courseControl.deleteCourse(selectedCourse.getCode());
+        courseMap = courseControl.saveData();
         courseTable.getItems().remove(courseTable.getSelectionModel().getSelectedItem());
         deleteBtn.setDisable(true);
     }
@@ -158,7 +142,9 @@ public class CourseController implements Initializable {
             alert.show();
             return "Error";
         }
-        courseImpl.assignUnit(assignUnit, selectedCourse);
+        courseControl.assignUnit(assignUnit, selectedCourse);
+        courseMap = courseControl.saveData();
+        unitField.setText("");
         return "OK";
     }
 
@@ -173,21 +159,13 @@ public class CourseController implements Initializable {
 
 
     public void backHome(ActionEvent actionEvent) {
-        courseImpl.serializeCourse(courseMap, "course.txt");
+        courseControl.saveData();
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }
 
 
 
-    public void clear() {
-        codeField.setText("");
-        nameField.setText("");
-        underRadio.setSelected(false);
-        postRadio.setSelected(false);
-        directorField.setText("");
-        deputyField.setText("");
-    }
 
 
     public void addAction(ActionEvent actionEvent) {
