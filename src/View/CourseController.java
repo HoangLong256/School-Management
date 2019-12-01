@@ -49,7 +49,8 @@ public class CourseController implements Initializable {
     @FXML
     private Button addCourseBtn;
 
-    Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert alertError = new Alert(Alert.AlertType.ERROR);
+    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
     String  unitCode;
     Course selectedCourse;
     @Override
@@ -112,14 +113,14 @@ public class CourseController implements Initializable {
         ArrayList<Unit> unitList = selectedCourse.getUnitList();
 
         if(!unitControl.searchUnit(unitCode)) {
-            alert.setContentText("Invalid unit code");
-            alert.show();
+            alertError.setContentText("Invalid unit code");
+            alertError.show();
             return "Error";
         }
         Unit assignUnit = unitControl.getUnit(unitCode);
         if(unitList != null && unitList.contains(assignUnit)) {
-            alert.setContentText("This unit already assigned to this course");
-            alert.show();
+            alertError.setContentText("This unit already assigned to this course");
+            alertError.show();
             return "Error";
         }
         courseControl.assignUnit(assignUnit, selectedCourse);

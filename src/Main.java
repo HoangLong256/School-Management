@@ -2,8 +2,6 @@ import Controller.CourseControl;
 import Controller.StaffControl;
 import Controller.UnitControl;
 import View.ScreenController;
-import View.StaffController;
-import Model.Staff;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.Map;
 
 public class Main extends Application {
     ScreenController screenController = new ScreenController();
@@ -31,7 +28,7 @@ public class Main extends Application {
 
         if(staffControl.getStaffMap().isEmpty()) {
             uploadStaffsInfo("src/FileData/staffs.txt");
-            staffControl.showAllStaff();
+            staffControl.displayStaffs();
         }else{
             System.out.println("Not empty");
         }

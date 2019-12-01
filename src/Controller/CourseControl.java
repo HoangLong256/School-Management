@@ -11,11 +11,9 @@ public class CourseControl {
     private static CourseControl instance;
 
     private CourseService courseImp = new CourseService();
-
-
-
     private  Map<String, Course> courseMap = new HashMap<>();
 
+//    Singleton Pattern
     private CourseControl(){};
     public static synchronized CourseControl getInstance(){
         if(instance == null){
@@ -24,18 +22,20 @@ public class CourseControl {
         return instance;
     }
 
+//    Load database from file
     public Map<String, Course> loadData(){
-        courseMap = courseImp.deserializeCourse();
+        courseMap = courseImp.readData();
         return courseMap;
     }
 
 
-
+//  Sava database to file
     public Map<String, Course> saveData(){
-        courseImp.serializeCourse(courseMap);
+        courseImp.writeData(courseMap);
         return courseMap;
     }
 
+//    Getter and Setter course database
     public Map<String , Course> getCourseMap(){
         return courseMap;
     }
@@ -44,31 +44,26 @@ public class CourseControl {
         this.courseMap = courseMap;
     }
 
+//    Delete Course from database
     public Boolean deleteCourse(String code){
-        if(courseImp.deleteCourse(code, courseMap)){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+        return courseImp.deleteCourse(code,courseMap);
     }
 
+//    Assign Unit to database
     public Boolean assignUnit(Unit assignedUnit, Course course){
-        if(courseImp.assignUnit(assignedUnit, course)){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+        return courseImp.assignUnit(assignedUnit,course);
 
     }
 
+//  Add Course to database
     public Boolean addCourse(Course course){
-        if(courseImp.addCourse(course, courseMap)){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
+        return courseImp.addCourse(course, courseMap);
     }
 
+//    Remove Unit from Course
     public void removeUnit(String code){
         courseMap.forEach((k,v) -> {
-            courseImp.removeUnit(code,v);
+            courseImp.deleteUnitFromCourse(code,v);
         });
         saveData();
     }

@@ -1,10 +1,5 @@
 package Service;
-/**
- * This class created to implement the logic for class course
- *
- * @author s3634096
- *
- */
+
 import Model.Course;
 import Model.Staff;
 import Model.Unit;
@@ -14,12 +9,7 @@ import java.util.*;
 
 public class CourseService {
 
-    /**
-     * This method helps to add course.
-     * @param courseDetail - Contains all the details of course such as code , .
-     * @param courseMap - Contains units information in the map
-     * @return String - Contains "OK" or "Error"
-     */
+//  Add Course to Database
     public Boolean addCourse(Course courseDetail, Map<String, Course> courseMap) {
 
         if(!courseMap.isEmpty() && courseMap.containsKey(courseDetail.getCode())) {
@@ -31,7 +21,7 @@ public class CourseService {
         return Boolean.TRUE;
     }
 
-
+//  Assign Unit to Course
     public Boolean assignUnit(Unit assignedUnit, Course course) {
         int flag = 0;
         for(Unit unit : course.getUnitList()){
@@ -40,176 +30,66 @@ public class CourseService {
             }
         }
         if(flag == 1){
+            System.out.println("Unit already assigned");
             return Boolean.FALSE;
         }
         course.getUnitList().add(assignedUnit);
         return Boolean.TRUE;
     }
 
-    /**
-     * This method helps to assign unit to course.
-     * @param course - Contains all information of course such as unitList or code
-     * @return String - Contains "OK" or "Error"
-     */
-    public ArrayList<Unit> getUnitList(Course course) {
-        if(course.getUnitList() != null) {
-            return course.getUnitList();
-        }
-        return null;
-    }
-
-    /**
-     * This method helps to assign a staff as director.
-     * @param staff - Contains all the details of assigned staff member such as name or address
-     * @param course - Contains all information of course such as unitList or code
-     * @return String - Contains "OK" or "Error"
-     */
-    public String assignDirector(Staff staff, Course course) {
-            // Implement all required condition
-            if(course.getDirector() == null || course.getDirector().getSid() != staff.getSid()) {
-                if(course.getDeputy() == null || course.getDeputy().getSid() != staff.getSid()) {
-                    course.setDirector(staff);
-                    return "OK";
-                }
-            }
-        return "Error";
-    }
-
-    /**
-     * This method helps to assign a staff as deputy.
-     * @param staff - Contains all the details of assigned staff member such as name or address
-     * @param course - Contains all information of course such as unitList or code
-     * @return String - Contains "OK" or "Error"
-     */
-    public String assignDeputy(Staff staff, Course course) {
-        // Implement all required condition
-        if(course.getDeputy() == null || course.getDeputy().getSid() != staff.getSid()) {
-            if(course.getDirector() == null || course.getDirector().getSid() != staff.getSid()) {
-                course.setDirector(staff);
-                return "OK";
-            }
-        }
-        return "Error";
-    }
-
-    /**
-     * This method helps to delete a course
-     * @param code - Contains the code of course that need to be deleted
-     * @param courseMap - Contains all information of course such as unitList or code
-     * @return String - Contains "OK" or "Error" or else
-     */
+//  Delete Course from Database
     public Boolean deleteCourse(String code,Map<String, Course> courseMap) {
         if(courseMap.isEmpty()) {
-            System.out.println("There is currently none added unit");
+            System.out.println("Course Map is empty");
             return Boolean.FALSE;
         }
         if(courseMap.containsKey(code)) {
             courseMap.remove(code);
             return Boolean.TRUE;
-        } else {
-            return Boolean.FALSE;
         }
+        return Boolean.FALSE;
     }
 
-    /**
-     * This method helps to delete a unit that already assigned to this course
-     * @param uid - Contains the id of unit that need to be deleted
-     * @param course - Contains all information of course such as unitList or code
-     * @return String - Contains "OK" or "Error" or else
-     */
-    public String removeUnit(String uid,Course course) {
-        System.out.println("Unit to delete " + uid);
+
+//  Delete Unit from course
+    public Boolean deleteUnitFromCourse(String uid, Course course) {
         ArrayList<Unit> unitList = course.getUnitList();
         if(unitList.isEmpty()) {
-            System.out.println("nothing");
-            return "There is currently none added unit";
+            System.out.println("Unit List is empty");
+            return Boolean.FALSE;
         }
         for(int i = 0 ; i<unitList.size() ; i++) {
-            System.out.println(unitList.get(i).getCode());
             if(uid.equals(unitList.get(i).getCode())) {
                 unitList.remove(i);
-                System.out.println("deleted");
-                return "OK";
+                return Boolean.TRUE;
             }
         }
-        System.out.println("Error");
-        return "Error";
+
+        return Boolean.FALSE;
     }
 
-//    /**
-//     * This method helps to get a course from provided code
-//     * @param code - Contains the code information of searched course
-//     * @param courseMap - Contains all information of different courses such as unitList or code
-//     * @return Course - Contains empty or fully information
-//     */
-//    public Course getCourse(String code,Map<String, Course> courseMap) {
-//        if(courseMap.isEmpty()) {
-//            System.out.println("The current course database is empty");
-//            return new Course();
-//        }
-//        //Iterate through unit Map
-//        Iterator<Map.Entry<String, Course>> iterator = courseMap.entrySet().iterator();
-//        //Iterate using while loop
-//        while (iterator.hasNext()) {
-//            Map.Entry<String, Course> element = iterator.next();
-//            String ecourseID = element.getValue().getCode();
-//            //Condition to find if the current element in map is satisfy the provided code or not
-//            if(ecourseID.equals(code)){
-//                // return course
-//                return (Course) element;
-//            }
-//        }
-//        return new Course();
-//    }
 
-//    /**
-//     * This method helps to show the list of units that already assigned to this course
-//     * @param course - Contains all information of course such as unitList or code
-//     * @return String - Contains "OK" or "Error"
-//     */
-//    public String showUnitList(Course course) {
-//        ArrayList<Unit> unitsList = course.getUnitList();
-//        if(unitsList.isEmpty()) {
-//            return "The current list of units is empty";
-//        }
-//        // Loop through the unit list
-//        for(int i = 0 ; i<unitsList.size() ; i++) {
-//            System.out.println("Code: " +unitsList.get(i).getCode()+ "\t\t\t" + "Name: " +unitsList.get(i).getName());
-//        }
-//        return "OK";
-//        }
-//    /**
-//     * This method helps to get a course from provided code
-//     * @param course - Contains all information of course such as unitList or code
-//     * @return void
-//     */
-//    public void showCourseDetail(Course course) {
-//        System.out.println("Code: " +course.getCode());
-//        System.out.println("Name: " +course.getCode());
-//        System.out.println("Director: " +course.getDirector().toString());
-//        System.out.println("Deputy: " +course.getDeputy().toString());
-//    }
-
-
-    public void serializeCourse(Map<String, Course> courseMap) {
+//    Write Data to file
+    public void writeData(Map<String, Course> courseMap) {
         try {
-
             ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/courseData.ser"));
             oes.writeObject(courseMap);
-
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
-    public Map<String, Course> deserializeCourse() {
+
+//    Read Data from file
+    public Map<String, Course> readData() {
 
         Map<String, Course> courseMap = new HashMap<>();
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/courseData.ser"));
             courseMap = (Map<String, Course>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("The current course file is empty");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
         }
         return courseMap;
     }

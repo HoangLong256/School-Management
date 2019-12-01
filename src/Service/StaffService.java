@@ -7,39 +7,23 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class StaffService {
-    /**
-     * This method helps to add course.
-     * @param staff - Contains all the details of staff such as id or name ,...
-     * @param staffMap - Contains units information in the staff map
-     * @return String - Contains "OK" or "Error"
-     */
+
+//    Add Staff to database
     public Boolean addStaff(Staff staff, Map<Integer, Staff> staffMap) {
         if(staffMap.containsKey(staff.getSid())) {
-            System.out.println("This course already being stored");
+            System.out.println("Staff ID is already used");
             return Boolean.FALSE;
         }
-            //Add course to map
         staffMap.put(staff.getSid(), staff);
         return Boolean.TRUE;
     }
 
-    public void showAllStaff(Map<Integer, Staff> staffMap) {
-        Iterator<Map.Entry<Integer, Staff>> iterator = staffMap.entrySet().iterator();
-        StringBuilder stringBuilder = new StringBuilder();
-        while (iterator.hasNext()){
-            Map.Entry<Integer, Staff> entry =  iterator.next();
-            Staff staff = entry.getValue();
-            stringBuilder.append(entry.getKey()).append('\t').append(staff.getName()).append('\n');
-        }
-        System.out.println(stringBuilder);
+    
+    public void displayStaffs(Map<Integer, Staff> staffMap) {
+        staffMap.forEach((k,v) -> System.out.println(k + "\t\t" + v.getName()));
     }
 
-    /**
-     * This method helps get staff by ID.
-     * @param sid - Contains all the details of staff such as id or name ,...
-     * @param staffMap - Contains units information in the staff map
-     * @return String - Contains "OK" or "Error"
-     */
+
     public Staff getStaffByID(Integer sid, Map<Integer, Staff> staffMap) {
         if(staffMap.containsKey(sid)) {
             return staffMap.get(sid);
@@ -66,10 +50,5 @@ public class StaffService {
         return staffMap;
     }
 
-    public Boolean searchID(Integer sid, Map<Integer, Staff> staffMap) {
-        if(staffMap.containsKey(sid)) {
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
+
 }

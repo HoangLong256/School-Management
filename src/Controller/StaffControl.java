@@ -55,8 +55,8 @@ public class StaffControl {
         this.staffMap = map;
     }
 
-    public void showAllStaff(){
-        staffImp.showAllStaff(staffMap);
+    public void displayStaffs(){
+        staffImp.displayStaffs(staffMap);
     }
 
     public Staff getStaffByID(Integer sid){
