@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class CourseDetailController implements Initializable {
+public class CourseDetailView implements Initializable {
 
     @FXML
     private TextField codeField;
@@ -67,14 +67,11 @@ public class CourseDetailController implements Initializable {
     }
 
 
-    public void closeDetail(ActionEvent actionEvent) {
+    public void closeDetailAction(ActionEvent actionEvent) {
         screenController.closeStage((Stage) closeBtn.getScene().getWindow());
     }
 
-    //Receive message from scene 1
     public void transferCourse(Course course) {
-        //Display the message
-//        System.out.println(course.getCode());
         selectedCourse = course;
     }
 

@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.*;
 
-public class UnitController implements Initializable {
+public class UnitView implements Initializable {
 
     private ScreenController screenController =  new ScreenController();
     private UnitControl unitControl = UnitControl.getInstance();
@@ -36,23 +36,11 @@ public class UnitController implements Initializable {
     @FXML
     private TextField decodeField;
     @FXML
-    private TextField deNameField;
-    @FXML
-    private TextArea exIDArea;
-    @FXML
-    private TextArea exNameArea;
-    @FXML
-    private TextArea exAddArea;
-    @FXML
-    private TextArea lecIDArea;
-    @FXML
-    private TextArea lecNameArea;
-    @FXML
-    private TextArea lecAddArea;
-    @FXML
     private Button homeBtn;
     @FXML
     private Button deleteBtn;
+    @FXML
+    private Button viewDetailBtn;
 
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Unit selectedUnit;
@@ -63,13 +51,14 @@ public class UnitController implements Initializable {
 
         unitMap = unitControl.loadData();
         deleteBtn.setDisable(true);
-
+        viewDetailBtn.setDisable(true);
 
         unitTable.setRowFactory(tv -> {
             TableRow<Unit> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (!row.isEmpty()) ) {
                     selectedUnit  = row.getItem();
+                    viewDetailBtn.setDisable(false);
                     deleteBtn.setDisable(false);
                     showUnitDetail(selectedUnit);
                 }
@@ -77,23 +66,15 @@ public class UnitController implements Initializable {
             return row ;
         });
     }
-    /**
-     * This method called when Add Course button pressed
-     * Purpose: Add course to SST system
-     * @return String - Contains "OK" or "Error"
-     */
+
 
 
 
     public void loadUnit(ActionEvent actionEvent) {
         unitMap = unitControl.loadData();
 
-        // Transform map to array list
         unitList = new ArrayList<Unit>(unitMap.values());
-        // Add list of staff to the observableArrayList
         unitData =  FXCollections.observableArrayList(unitList);
-
-        // Set column in array to present as different attributes of staff
         codeColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
         semesterColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("semester"));
@@ -117,30 +98,29 @@ public class UnitController implements Initializable {
 
     public void deleteUnit(ActionEvent actionEvent) {
         String code = selectedUnit.getCode();
-        unitControl.deleteUnit(code);
         courseControl.removeUnit(code);
+        unitControl.deleteUnit(code);
         unitControl.saveData();
         courseControl.saveData();
         unitTable.getItems().remove(unitTable.getSelectionModel().getSelectedItem());
         deleteBtn.setDisable(true);
+        viewDetailBtn.setDisable(true);
+        decodeField.setText("");
 
     }
 
     public void showUnitDetail(Unit unit) {
-        Staff examiner = unit.getExaminer();
-        Staff lecturer = unit.getLecturer();
+
         decodeField.setText(unit.getCode());
-        deNameField.setText(unit.getName());
-        exIDArea.setText(String.valueOf(examiner.getSid()));
-        exNameArea.setText(examiner.getName());
-        exAddArea.setText(examiner.getAddress());
-        lecIDArea.setText(String.valueOf(lecturer.getSid()));
-        lecNameArea.setText(lecturer.getName());
-        lecAddArea.setText(lecturer.getAddress());
+
     }
 
 
-
+    public void viewDetailAction(ActionEvent actionEvent){
+        UnitDetailView detailController = new UnitDetailView();
+        detailController.getSelectedUnit(selectedUnit);
+        screenController.openScreen("unitDetail.fxml", "Unit Detail");
+    }
 
     public void addAction(ActionEvent actionEvent) {
         screenController.openScreen("addUnit.fxml", "Add Unit");

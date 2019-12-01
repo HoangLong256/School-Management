@@ -4,20 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Course implements Serializable {
-    // Define all required attributes of course
-    // This variable present for unique course code-- must be 3 digits long
+
+
+
+    private int cID;
     private String code;
-    // This variable present for the course name
     private String name;
-    // This variable present for the course type -- post or undergraduate
     private String type;
-    // This variable present for the  course location -- SGS or HN
     private String location;
-    // This variable present for the course director
     private Staff director;
-    // This variable present for the course deputy
     private Staff deputy;
-    // This variable present for the units belong to this code
     private ArrayList<Unit> unitList;
 
 
@@ -63,6 +59,13 @@ public class Course implements Serializable {
     }
     public void setUnitList(ArrayList<Unit> unitList) {
         this.unitList = unitList;
+    }
+    public int getcID() {
+        return cID;
+    }
+
+    public void setcID(int cID) {
+        this.cID = cID;
     }
 
 }

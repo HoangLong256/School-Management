@@ -10,14 +10,14 @@ import java.util.*;
 public class CourseService {
 
 //  Add Course to Database
-    public Boolean addCourse(Course courseDetail, Map<String, Course> courseMap) {
+    public Boolean addCourse(Course course, Map<Integer, Course> courseMap) {
 
-        if(!courseMap.isEmpty() && courseMap.containsKey(courseDetail.getCode())) {
-            System.out.println("This course code already being used");
+        if(!courseMap.isEmpty() && courseMap.containsKey(course.getcID())) {
+            System.out.println("ID is already used");
             return Boolean.FALSE;
         }
         //Add course to map
-        courseMap.put(courseDetail.getCode(), courseDetail);
+        courseMap.put(course.getcID(), course);
         return Boolean.TRUE;
     }
 
@@ -38,13 +38,13 @@ public class CourseService {
     }
 
 //  Delete Course from Database
-    public Boolean deleteCourse(String code,Map<String, Course> courseMap) {
+    public Boolean deleteCourse(Integer id,Map<Integer, Course> courseMap) {
         if(courseMap.isEmpty()) {
             System.out.println("Course Map is empty");
             return Boolean.FALSE;
         }
-        if(courseMap.containsKey(code)) {
-            courseMap.remove(code);
+        if(courseMap.containsKey(id)) {
+            courseMap.remove(id);
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -53,9 +53,9 @@ public class CourseService {
 
 //  Delete Unit from course
     public Boolean deleteUnitFromCourse(String uid, Course course) {
+
         ArrayList<Unit> unitList = course.getUnitList();
         if(unitList.isEmpty()) {
-            System.out.println("Unit List is empty");
             return Boolean.FALSE;
         }
         for(int i = 0 ; i<unitList.size() ; i++) {
@@ -68,9 +68,32 @@ public class CourseService {
         return Boolean.FALSE;
     }
 
+//    Find Unit in Course
+    public Boolean findUnitInCourse(String uid, Course course){
+        ArrayList<Unit> unitList = course.getUnitList();
+        if(unitList.isEmpty()) {
+            return Boolean.FALSE;
+        }
+        for(int i = 0 ; i<unitList.size() ; i++) {
+            if(uid.equals(unitList.get(i).getCode())) {
+                return Boolean.TRUE;
+            }
+        }
+        return Boolean.FALSE;
+    }
+
+//    Get Course by ID
+    public Course getCourseByID(String id, Map<Integer, Course> courseMap) {
+        if(courseMap.containsKey(id)) {
+            return courseMap.get(id);
+
+        }
+        return null;
+    }
+
 
 //    Write Data to file
-    public void writeData(Map<String, Course> courseMap) {
+    public void writeData(Map<Integer, Course> courseMap) {
         try {
             ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/courseData.ser"));
             oes.writeObject(courseMap);
@@ -80,12 +103,12 @@ public class CourseService {
     }
 
 //    Read Data from file
-    public Map<String, Course> readData() {
+    public Map<Integer, Course> readData() {
 
-        Map<String, Course> courseMap = new HashMap<>();
+        Map<Integer, Course> courseMap = new HashMap<>();
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/courseData.ser"));
-            courseMap = (Map<String, Course>) ois.readObject();
+            courseMap = (Map<Integer, Course>) ois.readObject();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e){

@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="694.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.CourseDetailController">
+<AnchorPane prefHeight="600.0" prefWidth="694.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.CourseDetailView">
    <children>
       <Label layoutX="303.0" layoutY="14.0" text="Course Detail">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="closeBtn" layoutX="572.0" layoutY="541.0" mnemonicParsing="false" onAction="#closeDetail" text="Close Window" />
+      <Button fx:id="closeBtn" layoutX="572.0" layoutY="541.0" mnemonicParsing="false" onAction="#closeDetailAction" text="Close Window" />
       <Label layoutX="36.0" layoutY="105.0" text="Name" AnchorPane.leftAnchor="36.0">
          <font>
             <Font name="System Bold Italic" size="13.0" />

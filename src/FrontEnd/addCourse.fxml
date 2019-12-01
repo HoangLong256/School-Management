@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.AddCourse">
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AddCourseView">
    <children>
       <Label layoutX="240.0" layoutY="36.0" text="Add Course" AnchorPane.topAnchor="36.0">
          <font>
@@ -46,7 +46,8 @@
       </Label>
       <HBox layoutX="155.0" layoutY="109.0" prefHeight="35.0" prefWidth="347.0">
          <children>
-            <TextField fx:id="idText" prefHeight="35.0" prefWidth="351.0" promptText="Code" />
+            <TextField fx:id="shText" prefHeight="55.0" prefWidth="250.0" promptText="Shorthand" />
+            <TextField fx:id="idText" prefHeight="35.0" prefWidth="347.0" promptText="Code" />
          </children>
       </HBox>
       <Label layoutX="17.0" layoutY="180.0" text="Program" AnchorPane.leftAnchor="17.0">

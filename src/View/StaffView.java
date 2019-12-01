@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.*;
 
-public class StaffController implements Initializable {
+public class StaffView implements Initializable {
 
     private StaffControl staffControl = StaffControl.getInstance();
     private Map<Integer, Staff> staffMap =  staffControl.getStaffMap();
