@@ -16,11 +16,11 @@ import java.util.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class CourseController implements Initializable {
+public class CourseView implements Initializable {
     private CourseControl courseControl = CourseControl.getInstance();
     private ScreenController screenController =  new ScreenController();
     private UnitControl unitControl = UnitControl.getInstance();
-    private Map<String, Course> courseMap = courseControl.getCourseMap();
+    private Map<Integer, Course> courseMap = courseControl.getCourseMap();
     private ObservableList<Course> courseData ;
     private List<Course> courseList;
 
@@ -72,40 +72,40 @@ public class CourseController implements Initializable {
                     assignBtn.setDisable(false);
                     deleteBtn.setDisable(false);
                     viewBtn.setDisable(false);
+
                 }
             });
             return row ;
         });
+        loadTableView();
+
     }
 
-
-
-
-
-    public void loadAction(ActionEvent actionEvent) {
+    public void loadTableView(){
         courseMap = courseControl.loadData();
-
-        // Transform map to array list
         courseList = new ArrayList<Course>(courseMap.values());
-        // Add list of staff to the observableArrayList
         courseData =  FXCollections.observableArrayList(courseList);
-
-        // Set column in array to present as different attributes of staff
         codeColumn.setCellValueFactory(new PropertyValueFactory<Course, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Course, String>("name"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<Course, String>("location"));
         programColumn.setCellValueFactory(new PropertyValueFactory<Course, String>("type"));
-        
-        // Set the created list to the staff table
         courseTable.setItems(null);
         courseTable.setItems(this.courseData);
     }
 
+
+
+    public void Refesh(ActionEvent actionEvent) {
+        loadTableView();
+    }
+
     public void deleteCourse(ActionEvent actionEvent) {
-        courseControl.deleteCourse(selectedCourse.getCode());
+        courseControl.deleteCourse(selectedCourse.getcID());
         courseMap = courseControl.saveData();
         courseTable.getItems().remove(courseTable.getSelectionModel().getSelectedItem());
         deleteBtn.setDisable(true);
+        assignBtn.setDisable(true);
+        viewBtn.setDisable(true);
     }
 
     public String assignUnit(ActionEvent actionEvent) {
@@ -130,24 +130,16 @@ public class CourseController implements Initializable {
     }
 
     public void viewDetail(ActionEvent actionEvent) {
-        CourseDetailController detailController = new CourseDetailController();
+        CourseDetailView detailController = new CourseDetailView();
         detailController.transferCourse(selectedCourse);
         screenController.openScreen("courseDetail.fxml", "Course Detail");
     }
-
-
-
-
 
     public void backHome(ActionEvent actionEvent) {
         courseControl.saveData();
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }
-
-
-
-
 
     public void addAction(ActionEvent actionEvent) {
         screenController.openScreen("addCourse.fxml", "Add Course");

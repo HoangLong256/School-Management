@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class HomeController {
+public class HomeView {
     ScreenController screenController = new ScreenController();
 
     @FXML

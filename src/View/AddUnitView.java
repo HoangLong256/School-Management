@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class AddUnit implements Initializable {
+public class AddUnitView implements Initializable {
     private StaffControl staffControll = StaffControl.getInstance();
     private UnitControl unitControl = UnitControl.getInstance();
     private Map<String, Unit> unitMap = unitControl.getUnitMap();
