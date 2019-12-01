@@ -59,6 +59,13 @@ public class CourseControl {
 
     }
 
+    public Boolean addCourse(Course course){
+        if(courseImp.addCourse(course, courseMap)){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
 
 }
 

@@ -66,8 +66,7 @@ public class AddCourse implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        courseMap = courseImpl.deserializeCourse("course.txt");
-        System.out.println("Course deserialize done");
+        courseMap = courseControl.loadData();
         underRadio.setToggleGroup(programGroup);
         postRadio.setToggleGroup(programGroup);
         saigonRadio.setToggleGroup(campusGroup);
@@ -134,13 +133,11 @@ public class AddCourse implements Initializable{
         course.setDirector(director);
         course.setDeputy(deputy);
         course.setUnitList(new ArrayList<>());
-        String returnMessage = courseImpl.addCourse(course, courseMap);
-        if(!returnMessage.equals("OK")) {
+        if(!courseControl.addCourse(course)) {
             alert.setContentText("");
             alert.show();
         }
-        System.out.println(returnMessage);
-        courseImpl.serializeCourse(courseMap, "course.txt");
+        courseControl.saveData();
 
 //        screenController.closeStage((Stage) saveBtn.getScene().getWindow());
     }

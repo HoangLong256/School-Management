@@ -20,14 +20,15 @@ public class CourseImpl {
      * @param courseMap - Contains units information in the map
      * @return String - Contains "OK" or "Error"
      */
-    public String addCourse(Course courseDetail, Map<String, Course> courseMap) {
+    public Boolean addCourse(Course courseDetail, Map<String, Course> courseMap) {
 
         if(!courseMap.isEmpty() && courseMap.containsKey(courseDetail.getCode())) {
-            return "This course code already being used";
+            System.out.println("This course code already being used");
+            return Boolean.FALSE;
         }
         //Add course to map
         courseMap.put(courseDetail.getCode(), courseDetail);
-        return "OK";
+        return Boolean.TRUE;
     }
 
     /**

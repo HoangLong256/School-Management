@@ -2,33 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6432e3f6-8d91-4a19-82b2-a27fa21799dd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course.txt" beforeDir="false" afterPath="$PROJECT_DIR$/course.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/AddCourse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/AddStaff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/AddUnit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/CourseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/CourseDetailController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/ScreenController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/StaffController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/UnitController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/enumerated/level.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/enumerated/location.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Controller/enumerated/semesterEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addCourse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addCourse.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addStaff.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addStaff.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addUnit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/addUnit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/course.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/course.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/courseDetail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/courseDetail.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/staff.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/staff.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/unit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/FrontEnd/unit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Implementation/CourseImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/Implementation/CourseImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/School Management System/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/School Management System/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CourseControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CourseControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Implementation/CourseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Implementation/CourseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/AddCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AddCourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/CourseController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/CourseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="147" column="45" selection-start-line="147" selection-start-column="45" selection-end-line="147" selection-end-column="45" />
+            <state relative-caret-position="-1873">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/CourseControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+            <state relative-caret-position="435">
+              <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#760#761#0" expanded="true" />
@@ -68,10 +44,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Implementation/CourseImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/AddCourse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-375">
-              <caret line="25" column="73" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
+            <state relative-caret-position="317">
+              <caret line="141" column="33" selection-start-line="141" selection-start-column="33" selection-end-line="141" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,15 +69,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Implementation/CourseImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -121,12 +97,13 @@
       <find>loca</find>
       <find>year</find>
       <find>unitData</find>
-      <find>courseMa</find>
       <find>courseMap</find>
       <find>save</find>
       <find>loadData</find>
-      <find>assigne</find>
       <find>courseImpl</find>
+      <find>courseIm</find>
+      <find>courseMa</find>
+      <find>assigne</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,10 +134,10 @@
         <option value="$PROJECT_DIR$/src/Controller/CourseController.java" />
         <option value="$PROJECT_DIR$/src/FrontEnd/course.fxml" />
         <option value="$PROJECT_DIR$/src/Controller/test.java" />
+        <option value="$PROJECT_DIR$/src/View/CourseController.java" />
         <option value="$PROJECT_DIR$/src/View/AddCourse.java" />
         <option value="$PROJECT_DIR$/src/Implementation/CourseImpl.java" />
         <option value="$PROJECT_DIR$/src/Controller/CourseControl.java" />
-        <option value="$PROJECT_DIR$/src/View/CourseController.java" />
       </list>
     </option>
   </component>
@@ -223,7 +200,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575160627634" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575160976239" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -269,12 +246,12 @@
       <updated>1574749397083</updated>
       <workItem from="1574749398319" duration="2056000" />
       <workItem from="1574922397136" duration="9935000" />
-      <workItem from="1574960805790" duration="11751000" />
+      <workItem from="1574960805790" duration="12075000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23742000" />
+    <option name="totallyTimeSpent" value="24066000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -289,7 +266,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3120482" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3120482" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -297,7 +274,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -578,43 +555,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Implementation/CourseImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/View/CourseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/AddCourse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375">
-          <caret line="25" column="73" selection-start-line="25" selection-start-column="73" selection-end-line="25" selection-end-column="73" />
+        <state relative-caret-position="-1873">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/AddCourse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="141" column="33" selection-start-line="141" selection-start-column="33" selection-end-line="141" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Implementation/CourseImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CourseControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+        <state relative-caret-position="435">
+          <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#760#761#0" expanded="true" />
             <element signature="e#791#792#0" expanded="true" />
             <element signature="e#863#864#0" expanded="true" />
             <element signature="e#901#902#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/CourseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="147" column="45" selection-start-line="147" selection-start-column="45" selection-end-line="147" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
