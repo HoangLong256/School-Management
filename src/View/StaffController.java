@@ -1,6 +1,6 @@
 package View;
 
-import Implementation.StaffImpl;
+import Controller.StaffControl;
 import Model.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +18,8 @@ import java.util.*;
 
 public class StaffController implements Initializable {
 
-    static StaffImpl staffImpl = new StaffImpl();
-    static Map<Integer, Staff> staffMap =  new HashMap<Integer, Staff>();
+    private StaffControl staffControl = StaffControl.getInstance();
+    private Map<Integer, Staff> staffMap =  staffControl.getStaffMap();
     private ObservableList<Staff> staffData;
     private List<Staff> staffList;
     ScreenController screenController = new ScreenController();
@@ -38,24 +38,13 @@ public class StaffController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        deserializeStaff();
-        showAllStaff();
+        staffControl.loadData();
         loadStaff();
-        System.out.println("Staff deserialize done");
     }
 
-    public String addStaff(int id, String name, String address){
-        Staff staff = new Staff();
-        staff.setSid(id);
-        staff.setName(name);
-        staff.setAddress(address);
-        staffImpl.addStaff(staff, staffMap);
-        return "OK";
-    }
 
-    public void showAllStaff(){
-        staffImpl.showAllStaff(staffMap);
-    }
+
+
 
     public void loadStaff() {
         // Transform map to array list
@@ -73,23 +62,8 @@ public class StaffController implements Initializable {
         staffTable.setItems(this.staffData);
     }
 
-    public Staff getStaffByID(Integer sid){
-        return staffImpl.getStaffByID(sid, staffMap);
-    }
 
-    public void serializeStaff() {
-        staffImpl.serializeStaff(staffMap, "staff.txt");
-    }
-    public Map<Integer, Staff> deserializeStaff() {
-        staffMap =  staffImpl.deserializeStaff("staff.txt");
-        return staffMap;
-    }
-
-    public Boolean searchStaffID(Integer sid) {
-        return staffImpl.searchID(sid, staffMap);
-    }
     public void backHome(ActionEvent actionEvent) {
-        staffImpl.serializeStaff(staffMap, "staff.txt");
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }

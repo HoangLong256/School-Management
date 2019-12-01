@@ -1,7 +1,6 @@
 package View;
 
 import Controller.CourseControl;
-import View.enumerated.location;
 import Model.Course;
 import Model.Unit;
 import javafx.collections.FXCollections;
@@ -19,32 +18,13 @@ import javafx.stage.Stage;
 public class CourseController implements Initializable {
     private CourseControl courseControl = CourseControl.getInstance();
     private ScreenController screenController =  new ScreenController();
-    private StaffController staffController =  new StaffController();
     private UnitController unitController = new UnitController();
     private Map<String, Course> courseMap = courseControl.getCourseMap();
     private ObservableList<Course> courseData ;
     private List<Course> courseList;
-//     Generate a constructor for the class CourseController
-//    public CourseController(UnitController unitController, StaffController staffController) {
-//        this.unitController = unitController;
-//        this.staffController = staffController;
-//    }
 
 
-    @FXML
-    private TextField codeField;
-    @FXML
-    private TextField nameField;
-    @FXML
-    private ComboBox<location> locationComboBox;
-    @FXML
-    private RadioButton underRadio;
-    @FXML
-    private RadioButton postRadio;
-    @FXML
-    private TextField directorField;
-    @FXML
-    private TextField deputyField;
+
     @FXML
     private TableView<Course> courseTable;
     @FXML
@@ -68,9 +48,8 @@ public class CourseController implements Initializable {
     @FXML
     private Button addCourseBtn;
 
-    ToggleGroup toggleGroup = new ToggleGroup();
     Alert alert = new Alert(Alert.AlertType.ERROR);
-    String code, name, campusLocation, programType, directorID, deputyID, unitCode;
+    String  unitCode;
     Course selectedCourse;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

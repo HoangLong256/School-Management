@@ -1,3 +1,4 @@
+import Controller.StaffControl;
 import View.ScreenController;
 import View.StaffController;
 import Model.Staff;
@@ -22,19 +23,20 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        StaffController staffController = new StaffController();
-        Map<Integer, Staff> staffMap = staffController.deserializeStaff();
+        StaffControl staffControl = StaffControl.getInstance();
+        Map<Integer, Staff> staffMap = staffControl.getStaffMap();
         if(staffMap == null) {
             uploadStaffsInfo("c:/temp/staffs.txt");
-            staffController.showAllStaff();
+            staffControl.showAllStaff();
         }
         System.out.println("Waiting to deserialize");
+        staffControl.loadData();
         launch(args);
     }
 
 
     public static void uploadStaffsInfo(String path) throws IOException {
-        StaffController staffController = new StaffController();
+        StaffControl staffControl = StaffControl.getInstance();
         File file = new File(path);
 
         FileReader fr = new FileReader(file);
@@ -45,9 +47,9 @@ public class Main extends Application {
         for(int i = 0; i < numberOfStaff; i++) {
             String[] idName = br.readLine().split(",");
             String address = br.readLine();
-            staffController.addStaff(Integer.parseInt(idName[0]), idName[1], address);
+            staffControl.addStaff(Integer.parseInt(idName[0]), idName[1], address);
         }
-        staffController.serializeStaff();
+        staffControl.saveData();
 
         br.close();
         fr.close();

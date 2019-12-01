@@ -1,10 +1,9 @@
 package View;
 
 import Controller.CourseControl;
-import Implementation.CourseImpl;
+import Controller.StaffControl;
 import Model.Course;
 import Model.Staff;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,17 +15,13 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.*;
-import java.util.List;
 
 public class AddCourse implements Initializable{
     private ScreenController screenController =  new ScreenController();
-    private StaffController staffController =  new StaffController();
-    private UnitController unitController = new UnitController();
+    private StaffControl staffControll =  StaffControl.getInstance() ;
     private CourseControl courseControl = CourseControl.getInstance();
     private Map<String, Course> courseMap = courseControl.getCourseMap();
-    static CourseImpl courseImpl = new CourseImpl();
-    private ObservableList<Course> courseData ;
-    private List<Course> courseList;
+
 
     @FXML
     private Button closeBtn;
@@ -123,8 +118,12 @@ public class AddCourse implements Initializable{
 //        }
 //        Staff deputy = staffController.getStaffByID(Integer.parseInt(deputyID));
 //        Staff director = staffController.getStaffByID(Integer.parseInt(directorID));
-        Staff deputy = staffController.getStaffByID(Integer.parseInt("1122334455"));
-        Staff director = staffController.getStaffByID(Integer.parseInt("1122443355"));
+        Staff deputy = staffControll.getStaffByID(Integer.parseInt("1122334455"));
+        if(staffControll.getStaffByID(Integer.parseInt("1122334455"))==null){
+            System.out.println("Fail to assign");
+
+        }
+        Staff director = staffControll.getStaffByID(Integer.parseInt("1122443355"));
         Course course = new Course();
         course.setCode(courseID);
         course.setName(name);

@@ -27,24 +27,6 @@ public class UnitController implements Initializable {
     private List<Unit> unitList;
 
     @FXML
-    private TextField shField;
-    @FXML
-    private TextField numField;
-    @FXML
-    private ComboBox<level> yearComboBox;
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextField examinerField;
-    @FXML
-    private TextField lecturerField;
-    @FXML
-    private RadioButton oneRadio;
-    @FXML
-    private RadioButton twoRadio;
-    @FXML
-    private RadioButton threeRadio;
-    @FXML
     private TableView<Unit> unitTable;
     @FXML
     private TableColumn<Unit, String> codeColumn;
@@ -73,9 +55,7 @@ public class UnitController implements Initializable {
     @FXML
     private Button deleteBtn;
 
-    ToggleGroup toggleGroup = new ToggleGroup();
     Alert alert = new Alert(Alert.AlertType.ERROR);
-    String code, sh, year,number, name, semester, examinerID, lecID;
     Unit selectedUnit;
 
 //    public UnitController(StaffController staffController) {
@@ -174,16 +154,6 @@ public class UnitController implements Initializable {
     }
 
 
-    public void clear() {
-        shField.setText("");
-        nameField.setText("");
-        numField.setText("");
-        oneRadio.setSelected(false);
-        twoRadio.setSelected(false);
-        threeRadio.setSelected(false);
-        examinerField.setText("");
-        lecturerField.setText("");
-    }
 
 
     public void addAction(ActionEvent actionEvent) {

@@ -1,5 +1,6 @@
 package View;
 
+import Controller.StaffControl;
 import View.enumerated.level;
 import View.enumerated.semesterEnum;
 import Implementation.UnitImpl;
@@ -18,9 +19,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddUnit implements Initializable {
-    private StaffController staffController =  new StaffController();
-    static Map<String, Unit> unitMap = new HashMap<>();
-    static UnitImpl unitImpl = new UnitImpl();
+    private StaffControl staffControll = StaffControl.getInstance();
+    private Map<String, Unit> unitMap = new HashMap<>();
+    private UnitImpl unitImpl = new UnitImpl();
     private ScreenController screenController =  new ScreenController();
 
     @FXML
@@ -116,8 +117,8 @@ public class AddUnit implements Initializable {
 //        Staff examiner = staffController.getStaffByID(Integer.parseInt(examinerID));
 //        Staff lecturer = staffController.getStaffByID(Integer.parseInt(lecID));
         code = sh.toUpperCase() + (yearComboBox.getSelectionModel().getSelectedIndex()+1) + number;
-        Staff examiner = staffController.getStaffByID(Integer.parseInt("1122334455"));
-        Staff lecturer = staffController.getStaffByID(Integer.parseInt("1122443355"));
+        Staff examiner = staffControll.getStaffByID(Integer.parseInt("1122334455"));
+        Staff lecturer = staffControll.getStaffByID(Integer.parseInt("1122443355"));
         Unit unit = new Unit();
         unit.setCode(code);
         unit.setName(name);

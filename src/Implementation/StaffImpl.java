@@ -15,15 +15,14 @@ public class StaffImpl {
      * @param staffMap - Contains units information in the staff map
      * @return String - Contains "OK" or "Error"
      */
-    public String addStaff(Staff staff, Map<Integer, Staff> staffMap) {
+    public Boolean addStaff(Staff staff, Map<Integer, Staff> staffMap) {
         if(staffMap.containsKey(staff.getSid())) {
             System.out.println("This course already being stored");
-            return "Error";
-        } else {
-            //Add course to map
-            staffMap.put(staff.getSid(), staff);
-            return "OK";
+            return Boolean.FALSE;
         }
+            //Add course to map
+        staffMap.put(staff.getSid(), staff);
+        return Boolean.TRUE;
     }
 
     public void showAllStaff(Map<Integer, Staff> staffMap) {
