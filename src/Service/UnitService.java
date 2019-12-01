@@ -1,6 +1,5 @@
-package Implementation;
+package Service;
 
-import Model.Course;
 import Model.Staff;
 import Model.Unit;
 
@@ -9,34 +8,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UnitImpl {
+public class UnitService {
 
 
-    public String addUnit(Unit unitDetails, Map<String, Unit> unitMap) {
+    public Boolean addUnit(Unit unitDetails, Map<String, Unit> unitMap) {
 
         if(!unitMap.isEmpty() && unitMap.containsKey(unitDetails.getCode())) {
-            return "This unit code already being used";
+            System.out.println( "This unit code already being used");
+            return Boolean.FALSE;
         }
         //Add course to map
         unitMap.put(unitDetails.getCode(), unitDetails);
-        return "OK";
+        return Boolean.TRUE;
     }
 
 
 
-    public String deleteUnit(String uid,Map<String, Unit> unitMap) {
+    public Boolean deleteUnit(String uid,Map<String, Unit> unitMap) {
         String message;
         if(unitMap.isEmpty()) {
             message = "There is currently none added unit";
+            return Boolean.FALSE;
         }
         if(unitMap.containsKey(uid)) {
             unitMap.remove(uid);
             message = "OK";
+            return Boolean.TRUE;
         } else {
             message = "Error";
+            return Boolean.FALSE;
         }
-        //Return result as String
-        return message;
+
     }
 
     public void showUnit(Unit unitDetail) {
@@ -78,9 +80,9 @@ public class UnitImpl {
 //        return null;
     }
 
-    public void serializeUnit(Map<String, Unit> unitMap, String fileName) {
+    public void serializeUnit(Map<String, Unit> unitMap) {
         try {
-            ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/unitData.ser"));
             oes.writeObject(unitMap);
 
         } catch (IOException e) {
@@ -88,10 +90,10 @@ public class UnitImpl {
 
         }
     }
-    public Map<String, Unit> deserializeUnit(String fileName) {
+    public Map<String, Unit> deserializeUnit() {
         Map<String, Unit> unitMap = new HashMap<>();
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/unitData.ser"));
             unitMap = (Map<String, Unit>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("The current course file is empty");

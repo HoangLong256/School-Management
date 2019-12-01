@@ -1,4 +1,6 @@
+import Controller.CourseControl;
 import Controller.StaffControl;
+import Controller.UnitControl;
 import View.ScreenController;
 import View.StaffController;
 import Model.Staff;
@@ -24,13 +26,19 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
         StaffControl staffControl = StaffControl.getInstance();
-        Map<Integer, Staff> staffMap = staffControl.getStaffMap();
-        if(staffMap == null) {
-            uploadStaffsInfo("c:/temp/staffs.txt");
+        CourseControl courseControl = CourseControl.getInstance();
+        UnitControl unitControl = UnitControl.getInstance();
+
+        if(staffControl.getStaffMap().isEmpty()) {
+            uploadStaffsInfo("src/FileData/staffs.txt");
             staffControl.showAllStaff();
+        }else{
+            System.out.println("Not empty");
         }
         System.out.println("Waiting to deserialize");
         staffControl.loadData();
+        unitControl.loadData();
+        courseControl.loadData();
         launch(args);
     }
 

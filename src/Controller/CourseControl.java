@@ -1,6 +1,6 @@
 package Controller;
 
-import Implementation.CourseImpl;
+import Service.CourseService;
 import Model.Course;
 import Model.Unit;
 
@@ -10,11 +10,11 @@ import java.util.Map;
 public class CourseControl {
     private static CourseControl instance;
 
-    private CourseImpl courseImp = new CourseImpl();
+    private CourseService courseImp = new CourseService();
 
 
 
-    static Map<String, Course> courseMap = new HashMap<>();
+    private  Map<String, Course> courseMap = new HashMap<>();
 
     private CourseControl(){};
     public static synchronized CourseControl getInstance(){
@@ -25,14 +25,14 @@ public class CourseControl {
     }
 
     public Map<String, Course> loadData(){
-        courseMap = courseImp.deserializeCourse("course.txt");
+        courseMap = courseImp.deserializeCourse();
         return courseMap;
     }
 
 
 
     public Map<String, Course> saveData(){
-        courseImp.serializeCourse(courseMap, "course.txt");
+        courseImp.serializeCourse(courseMap);
         return courseMap;
     }
 
@@ -64,6 +64,13 @@ public class CourseControl {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+
+    public void removeUnit(String code){
+        courseMap.forEach((k,v) -> {
+            courseImp.removeUnit(code,v);
+        });
+        saveData();
     }
 
 

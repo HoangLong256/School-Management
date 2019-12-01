@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CourseControl;
+import Controller.UnitControl;
 import Model.Course;
 import Model.Unit;
 import javafx.collections.FXCollections;
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 public class CourseController implements Initializable {
     private CourseControl courseControl = CourseControl.getInstance();
     private ScreenController screenController =  new ScreenController();
-    private UnitController unitController = new UnitController();
+    private UnitControl unitControl = UnitControl.getInstance();
     private Map<String, Course> courseMap = courseControl.getCourseMap();
     private ObservableList<Course> courseData ;
     private List<Course> courseList;
@@ -110,12 +111,12 @@ public class CourseController implements Initializable {
         unitCode = unitField.getText().toUpperCase();
         ArrayList<Unit> unitList = selectedCourse.getUnitList();
 
-        if(!unitController.searchUnit(unitCode)) {
+        if(!unitControl.searchUnit(unitCode)) {
             alert.setContentText("Invalid unit code");
             alert.show();
             return "Error";
         }
-        Unit assignUnit = unitController.getUnit(unitCode);
+        Unit assignUnit = unitControl.getUnit(unitCode);
         if(unitList != null && unitList.contains(assignUnit)) {
             alert.setContentText("This unit already assigned to this course");
             alert.show();

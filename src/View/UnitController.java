@@ -1,7 +1,7 @@
 package View;
 
-import View.enumerated.level;
-import Implementation.UnitImpl;
+import Controller.CourseControl;
+import Controller.UnitControl;
 import Model.Staff;
 import Model.Unit;
 import javafx.collections.FXCollections;
@@ -19,10 +19,9 @@ import java.util.*;
 public class UnitController implements Initializable {
 
     private ScreenController screenController =  new ScreenController();
-    private StaffController staffController =  new StaffController();
-//    private CourseController courseController = new CourseController();
-    static Map<String, Unit> unitMap = new HashMap<>();
-    static UnitImpl unitImpl = new UnitImpl();
+    private UnitControl unitControl = UnitControl.getInstance();
+    private CourseControl courseControl = CourseControl.getInstance();
+    private Map<String, Unit> unitMap = unitControl.getUnitMap();
     private ObservableList<Unit> unitData ;
     private List<Unit> unitList;
 
@@ -58,22 +57,11 @@ public class UnitController implements Initializable {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Unit selectedUnit;
 
-//    public UnitController(StaffController staffController) {
-//        this.staffController = staffController;
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("/FrontEnd/unit.fxml"));
-//        loader.setController(this);
-//        try {
-//            loader.load();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        unitMap = unitImpl.deserializeUnit("unit.txt");
-        System.out.println("Unit deserialize done");
 
+        unitMap = unitControl.loadData();
         deleteBtn.setDisable(true);
 
 
@@ -82,9 +70,6 @@ public class UnitController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && (!row.isEmpty()) ) {
                     selectedUnit  = row.getItem();
-//                    System.out.println("Single click on: "+rowData.getCode());
-                    //   unitImpl.deleteCourse(rowData.getCode(), unitMap);
-//                    unitTable.getItems().remove(unitTable.getSelectionModel().getSelectedItem());
                     deleteBtn.setDisable(false);
                     showUnitDetail(selectedUnit);
                 }
@@ -101,7 +86,7 @@ public class UnitController implements Initializable {
 
 
     public void loadUnit(ActionEvent actionEvent) {
-        unitMap = unitImpl.deserializeUnit("unit.txt");
+        unitMap = unitControl.loadData();
 
         // Transform map to array list
         unitList = new ArrayList<Unit>(unitMap.values());
@@ -111,7 +96,7 @@ public class UnitController implements Initializable {
         // Set column in array to present as different attributes of staff
         codeColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
-        semesterColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("semesterEnum"));
+        semesterColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("semester"));
 
         codeColumn.setStyle( "-fx-alignment: CENTER;");
         nameColumn.setStyle( "-fx-alignment: CENTER;");
@@ -123,20 +108,21 @@ public class UnitController implements Initializable {
     }
 
     public void backHome(ActionEvent actionEvent) {
-        unitImpl.serializeUnit(unitMap, "unit.txt");
+        unitControl.saveData();
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }
 
-    public boolean searchUnit(String code) {
-        return unitImpl.searchUnitCode(code, unitMap);
-    }
 
-    public Unit getUnit(String code) {
-        return unitImpl.getUnitByCode(code, unitMap);
-    }
 
     public void deleteUnit(ActionEvent actionEvent) {
+        String code = selectedUnit.getCode();
+        unitControl.deleteUnit(code);
+        courseControl.removeUnit(code);
+        unitControl.saveData();
+        courseControl.saveData();
+        unitTable.getItems().remove(unitTable.getSelectionModel().getSelectedItem());
+        deleteBtn.setDisable(true);
 
     }
 

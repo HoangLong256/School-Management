@@ -1,14 +1,12 @@
-package Implementation;
+package Service;
 
-import Model.Course;
 import Model.Staff;
-import com.sun.source.tree.ReturnTree;
 
 import java.io.*;
 import java.util.Iterator;
 import java.util.Map;
 
-public class StaffImpl {
+public class StaffService {
     /**
      * This method helps to add course.
      * @param staff - Contains all the details of staff such as id or name ,...
@@ -49,18 +47,18 @@ public class StaffImpl {
         }
         return null;
     }
-    public void serializeStaff(Map<Integer, Staff> staffMap, String fileName) {
+    public void serializeStaff(Map<Integer, Staff> staffMap) {
         try {
-            ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/staffData.ser"));
             oes.writeObject(staffMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public Map<Integer, Staff>  deserializeStaff(String fileName) {
+    public Map<Integer, Staff>  deserializeStaff() {
         Map<Integer, Staff> staffMap = null ;
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/staffData.ser"));
             staffMap = (Map<Integer, Staff>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("The current staff file is empty");

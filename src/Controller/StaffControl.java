@@ -1,6 +1,6 @@
 package Controller;
 
-import Implementation.StaffImpl;
+import Service.StaffService;
 import Model.Staff;
 
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class StaffControl {
     private static StaffControl instance;
-    private Map<Integer, Staff> staffMap =  new HashMap<Integer, Staff>();
-    private StaffImpl staffImp = new StaffImpl();
+    static Map<Integer, Staff> staffMap =  new HashMap<Integer, Staff>();
+    private StaffService staffImp = new StaffService();
 
 
 
@@ -20,6 +20,7 @@ public class StaffControl {
     public static synchronized StaffControl getInstance(){
         if(instance == null){
             instance = new StaffControl();
+
         }
         return instance;
     }
@@ -37,12 +38,12 @@ public class StaffControl {
 
 
     public Map<Integer, Staff> loadData(){
-        staffMap = staffImp.deserializeStaff("staff.txt");
+        staffMap = staffImp.deserializeStaff();
         return staffMap;
     }
 
     public Map<Integer, Staff> saveData(){
-        staffImp.serializeStaff(staffMap, "staff.txt");
+        staffImp.serializeStaff(staffMap);
         return staffMap;
     }
 

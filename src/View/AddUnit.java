@@ -1,9 +1,9 @@
 package View;
 
 import Controller.StaffControl;
+import Controller.UnitControl;
 import View.enumerated.level;
 import View.enumerated.semesterEnum;
-import Implementation.UnitImpl;
 import Model.Staff;
 import Model.Unit;
 import javafx.collections.FXCollections;
@@ -14,14 +14,14 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddUnit implements Initializable {
     private StaffControl staffControll = StaffControl.getInstance();
-    private Map<String, Unit> unitMap = new HashMap<>();
-    private UnitImpl unitImpl = new UnitImpl();
+    private UnitControl unitControl = UnitControl.getInstance();
+    private Map<String, Unit> unitMap = unitControl.getUnitMap();
+//    private UnitService unitImpl = new UnitService();
     private ScreenController screenController =  new ScreenController();
 
     @FXML
@@ -58,8 +58,7 @@ public class AddUnit implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        unitMap = unitImpl.deserializeUnit("unit.txt");
-        System.out.println("Unit deserialize done");
+        unitMap = unitControl.loadData();
         this.yearComboBox.setItems(FXCollections.observableArrayList(level.values()));
         this.semesterComboBox.setItems(FXCollections.observableArrayList(semesterEnum.values()));
 
@@ -119,20 +118,22 @@ public class AddUnit implements Initializable {
         code = sh.toUpperCase() + (yearComboBox.getSelectionModel().getSelectedIndex()+1) + number;
         Staff examiner = staffControll.getStaffByID(Integer.parseInt("1122334455"));
         Staff lecturer = staffControll.getStaffByID(Integer.parseInt("1122443355"));
+        if(staffControll.getStaffByID(Integer.parseInt("1122443355")) == null){
+            System.out.println("Failed to assign");
+        }
         Unit unit = new Unit();
         unit.setCode(code);
         unit.setName(name);
         unit.setSemester(semester);
         unit.setExaminer(examiner);
         unit.setLecturer(lecturer);
-        String returnMessage = unitImpl.addUnit(unit, unitMap);
-        if(!returnMessage.equals("OK")) {
+
+        if(!unitControl.addUnit(unit)) {
             alert.setContentText("");
             alert.show();
             return Boolean.FALSE;
         }
-
-        unitImpl.serializeUnit(unitMap, "unit.txt");
+        unitControl.saveData();
         screenController.closeStage((Stage) saveBtn.getScene().getWindow());
         return Boolean.TRUE;
     }
