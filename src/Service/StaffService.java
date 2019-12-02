@@ -42,10 +42,18 @@ public class StaffService {
     public Map<Integer, Staff>  deserializeStaff() {
         Map<Integer, Staff> staffMap = null ;
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/staffData.ser"));
-            staffMap = (Map<Integer, Staff>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("The current staff file is empty");
+            FileInputStream fis = new FileInputStream("src/FileData/staffData.ser");
+            int empty = fis.available();
+            if(empty != 0 ){
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                staffMap = (Map<Integer, Staff>) ois.readObject();
+                fis.close();
+                ois.close();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException  e){
+            e.printStackTrace();
         }
         return staffMap;
     }

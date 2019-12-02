@@ -2,10 +2,10 @@ package View;
 
 
 import Controller.CourseControl;
+import Controller.ScreenController;
 import Model.Unit;
 import Model.Course;
 import Model.Staff;
-import Model.Unit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

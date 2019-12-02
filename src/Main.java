@@ -1,7 +1,8 @@
 import Controller.CourseControl;
 import Controller.StaffControl;
 import Controller.UnitControl;
-import View.ScreenController;
+import Service.PreDeterminedService;
+import Controller.ScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,14 +26,14 @@ public class Main extends Application {
         StaffControl staffControl = StaffControl.getInstance();
         CourseControl courseControl = CourseControl.getInstance();
         UnitControl unitControl = UnitControl.getInstance();
+        PreDeterminedService preDeterminedService = new PreDeterminedService();
 
-        if(staffControl.getStaffMap().isEmpty()) {
-            uploadStaffsInfo("src/FileData/staffs.txt");
+        if(!preDeterminedService.checkEmptyData()) {
+            preDeterminedService.readDataFromFile();
+            System.out.println("Pre Determined Data");
             staffControl.displayStaffs();
-        }else{
-            System.out.println("Not empty");
         }
-        System.out.println("Waiting to deserialize");
+        System.out.println("Starting ... ");
         staffControl.loadData();
         unitControl.loadData();
         courseControl.loadData();
@@ -40,24 +41,6 @@ public class Main extends Application {
     }
 
 
-    public static void uploadStaffsInfo(String path) throws IOException {
-        StaffControl staffControl = StaffControl.getInstance();
-        File file = new File(path);
 
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-
-        int numberOfStaff = Integer.parseInt(br.readLine());
-
-        for(int i = 0; i < numberOfStaff; i++) {
-            String[] idName = br.readLine().split(",");
-            String address = br.readLine();
-            staffControl.addStaff(Integer.parseInt(idName[0]), idName[1], address);
-        }
-        staffControl.saveData();
-
-        br.close();
-        fr.close();
-    }
 
 }

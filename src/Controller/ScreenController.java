@@ -1,4 +1,4 @@
-package View;
+package Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +11,7 @@ public class ScreenController {
     public void closeStage(Stage stage){
         stage.close();
     }
+
     public void openScreen(String filename, String title) {
         Stage stage = new Stage();
         Scene scene = null;
@@ -26,14 +27,9 @@ public class ScreenController {
         stage.show();
 
     }
-//    public void aa() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource("unit.fxml"));
-//        loader.setController(this);
-//        loader.load();
-//    }
+
 
     public void closeProgram(){
-        System.out.println("Screen closed");
-//        System.exit(1);
+        System.out.println("Closing Screen");
     }
 }

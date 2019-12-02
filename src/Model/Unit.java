@@ -17,6 +17,9 @@ public class Unit implements Serializable {
     private String semester;
 
 
+    private int year;
+
+
     // Getter and Setter of all variables
     public String getCode() {
         return code;
@@ -47,6 +50,13 @@ public class Unit implements Serializable {
     }
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    public int getYear() {
+        return year;
+    }
+    public void setYear(int year) {
+        this.year = year;
     }
 
 }

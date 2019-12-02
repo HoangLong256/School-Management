@@ -46,9 +46,9 @@
       </Label>
       <HBox layoutX="109.0" layoutY="109.0" prefHeight="35.0" prefWidth="347.0">
          <children>
-            <TextField fx:id="shField" prefHeight="35.0" prefWidth="103.0" promptText="Code" />
+            <TextField fx:id="shText" prefHeight="35.0" prefWidth="103.0" promptText="Code" />
             <ComboBox fx:id="yearComboBox" prefHeight="35.0" prefWidth="127.0" promptText="Year" />
-            <TextField fx:id="numField" prefHeight="35.0" prefWidth="141.0" promptText="Digit" />
+            <TextField fx:id="digitText" prefHeight="35.0" prefWidth="141.0" promptText="Digit" />
          </children>
       </HBox>
       <Label layoutX="17.0" layoutY="180.0" text="Semester" AnchorPane.leftAnchor="17.0">

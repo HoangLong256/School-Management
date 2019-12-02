@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CourseControl;
+import Controller.ScreenController;
 import Controller.StaffControl;
 import Model.Course;
 import Model.Staff;
@@ -170,7 +171,7 @@ public class AddCourseView implements Initializable{
         try{
             Integer.parseInt(courseID);
             if(courseID.length() != 4){
-                return "ID Error: ID must be 3 digits";
+                return "ID Error: ID must be 4 digits";
             }
             if(courseSh.matches("[0-9]*")){
                 return "ID Error: Shorthand must be non digit characters";
@@ -184,6 +185,8 @@ public class AddCourseView implements Initializable{
             return null;
         }catch (NumberFormatException e){
             return "ID Error: Number Format";
+        }catch (IndexOutOfBoundsException e){
+            return "ID Error: Invalid ID";
         }
     }
 

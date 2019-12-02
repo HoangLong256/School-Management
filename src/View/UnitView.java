@@ -1,8 +1,8 @@
 package View;
 
 import Controller.CourseControl;
+import Controller.ScreenController;
 import Controller.UnitControl;
-import Model.Staff;
 import Model.Unit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,27 +65,25 @@ public class UnitView implements Initializable {
             });
             return row ;
         });
+        loadTableView();
+
     }
 
 
 
-
-    public void loadUnit(ActionEvent actionEvent) {
+    public void loadTableView(){
         unitMap = unitControl.loadData();
-
         unitList = new ArrayList<Unit>(unitMap.values());
         unitData =  FXCollections.observableArrayList(unitList);
         codeColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
         semesterColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("semester"));
-
-        codeColumn.setStyle( "-fx-alignment: CENTER;");
-        nameColumn.setStyle( "-fx-alignment: CENTER;");
-        semesterColumn.setStyle( "-fx-alignment: CENTER;");
-
-        // Set the created list to the unit table
         unitTable.setItems(null);
         unitTable.setItems(this.unitData);
+    }
+
+    public void refresh(ActionEvent actionEvent) {
+        loadTableView();
     }
 
     public void backHome(ActionEvent actionEvent) {

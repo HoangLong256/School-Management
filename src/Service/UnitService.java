@@ -11,16 +11,18 @@ import java.util.Map;
 public class UnitService {
 
 
-    public Boolean addUnit(Unit unitDetails, Map<String, Unit> unitMap) {
+    public Boolean addUnit(Unit unit, Map<String, Unit> unitMap) {
 
-        if(!unitMap.isEmpty() && unitMap.containsKey(unitDetails.getCode())) {
+        if(!unitMap.isEmpty() && unitMap.containsKey(unit.getCode())) {
             System.out.println( "This unit code already being used");
             return Boolean.FALSE;
         }
         //Add course to map
-        unitMap.put(unitDetails.getCode(), unitDetails);
+        unitMap.put(unit.getCode(), unit);
         return Boolean.TRUE;
     }
+
+
 
 
 
@@ -41,30 +43,9 @@ public class UnitService {
 
     }
 
-    public void showUnit(Unit unitDetail) {
-        System.out.println("Code: " + unitDetail.getCode().toString());
-        System.out.println("Name: " + unitDetail.getName().toString());
-        System.out.println("Examiner: " + unitDetail.getExaminer().toString());
-        System.out.println("Lecturer: " + unitDetail.getLecturer().toString());
-    }
 
 
-    public String assignExaminer(Staff staff, Unit unit) {
-        // Implement all required condition
-        if(unit.getExaminer() == null || unit.getExaminer().getSid() != staff.getSid()) {
-            unit.setExaminer(staff);
-            return "OK"; }
-        return "Error";
-    }
 
-
-    public String assignLecturer(Staff staff, Unit unit) {
-        // Implement all required condition
-        if(unit.getLecturer() == null || unit.getLecturer().getSid() != staff.getSid()) {
-            unit.setLecturer(staff);
-            return "OK"; }
-        return "Error";
-    }
 
     public Boolean searchUnitCode(String code, Map<String, Unit> unitMap) {
         if(unitMap.containsKey(code)) {
@@ -93,12 +74,25 @@ public class UnitService {
     public Map<String, Unit> deserializeUnit() {
         Map<String, Unit> unitMap = new HashMap<>();
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/unitData.ser"));
-            unitMap = (Map<String, Unit>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("The current course file is empty");
+            FileInputStream fis = new FileInputStream("src/FileData/unitData.ser");
+            int empty = fis.available();
+//            Prevent EOFException while reading empty file
+            if(empty !=  0){
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                unitMap = (Map<String, Unit>) ois.readObject();
+                ois.close();
+                fis.close();
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
         }
         return unitMap;
+
     }
 
 }

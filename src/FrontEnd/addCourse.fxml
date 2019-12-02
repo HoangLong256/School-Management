@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AddCourseView">
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="View.AddCourseView">
    <children>
       <Label layoutX="240.0" layoutY="36.0" text="Add Course" AnchorPane.topAnchor="36.0">
          <font>
@@ -82,7 +82,7 @@
       </Label>
       <HBox layoutX="155.0" layoutY="233.0" prefHeight="35.0" prefWidth="347.0">
          <children>
-            <RadioButton fx:id="saigonRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Saigon">
+            <RadioButton fx:id="saigonRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="SGS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -90,7 +90,7 @@
                   <Font size="17.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="hanoiRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Hanoi">
+            <RadioButton fx:id="hanoiRadio" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="HN">
                <font>
                   <Font size="17.0" />
                </font>

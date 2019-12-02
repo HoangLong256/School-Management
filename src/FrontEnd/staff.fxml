@@ -31,7 +31,7 @@
                         </HBox>
                         <VBox layoutX="14.0" layoutY="1.0" prefHeight="680.0" prefWidth="386.0" AnchorPane.leftAnchor="0.0">
                            <children>
-                              <Button fx:id="homeBtn" layoutX="25.0" layoutY="246.0" mnemonicParsing="false" onAction="#backHome" prefHeight="25.0" prefWidth="345.0" text="Back To Home" textAlignment="CENTER">
+                              <Button fx:id="homeBtn" layoutX="25.0" layoutY="246.0" mnemonicParsing="false" onAction="#backHome" prefHeight="25.0" prefWidth="345.0" text="Main Menu" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets left="15.0" top="100.0" />
                                  </VBox.margin>

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CourseControl;
+import Controller.ScreenController;
 import Controller.UnitControl;
 import Model.Course;
 import Model.Unit;
@@ -50,7 +51,7 @@ public class CourseView implements Initializable {
     private Button addCourseBtn;
 
     Alert alertError = new Alert(Alert.AlertType.ERROR);
-    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
     String  unitCode;
     Course selectedCourse;
     @Override
@@ -95,7 +96,7 @@ public class CourseView implements Initializable {
 
 
 
-    public void Refesh(ActionEvent actionEvent) {
+    public void Refresh(ActionEvent actionEvent) {
         loadTableView();
     }
 
@@ -108,25 +109,32 @@ public class CourseView implements Initializable {
         viewBtn.setDisable(true);
     }
 
-    public String assignUnit(ActionEvent actionEvent) {
+    public Boolean assignUnit(ActionEvent actionEvent) {
         unitCode = unitField.getText().toUpperCase();
         ArrayList<Unit> unitList = selectedCourse.getUnitList();
 
         if(!unitControl.searchUnit(unitCode)) {
-            alertError.setContentText("Invalid unit code");
+            alertError.setContentText("Assigned Unit Error: Invalid Unit");
             alertError.show();
-            return "Error";
+            unitField.setText("");
+            return Boolean.FALSE;
         }
         Unit assignUnit = unitControl.getUnit(unitCode);
         if(unitList != null && unitList.contains(assignUnit)) {
-            alertError.setContentText("This unit already assigned to this course");
+            alertError.setContentText("Assigned Unit Error: Already Assigned");
             alertError.show();
-            return "Error";
+            return Boolean.FALSE;
         }
-        courseControl.assignUnit(assignUnit, selectedCourse);
+        if(!courseControl.assignUnit(assignUnit, selectedCourse)) {
+            alertError.setContentText("This unit is not suitable for the program");
+            alertError.show();
+            return Boolean.FALSE;
+        }
+        alertInfo.setContentText("Unit Assigned");
+        alertInfo.show();
         courseMap = courseControl.saveData();
         unitField.setText("");
-        return "OK";
+        return Boolean.TRUE;
     }
 
     public void viewDetail(ActionEvent actionEvent) {

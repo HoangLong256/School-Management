@@ -30,7 +30,15 @@ public class CourseService {
             }
         }
         if(flag == 1){
-            System.out.println("Unit already assigned");
+            System.out.println("Assign Unit Error: Unit already assigned");
+            return Boolean.FALSE;
+        }
+        if(assignedUnit.getYear() > 3 && course.getType().equals("Undergraduate")){
+            System.out.println("Assign Unit Error: Unit cannot be assigned to Undergraduate");
+            return Boolean.FALSE;
+        }
+        if(assignedUnit.getYear() <=3 && course.getType().equals("Postgraduate")){
+            System.out.println("Assign Unit Error: Unit cannot be assigned to Postgraduate");
             return Boolean.FALSE;
         }
         course.getUnitList().add(assignedUnit);
@@ -107,8 +115,15 @@ public class CourseService {
 
         Map<Integer, Course> courseMap = new HashMap<>();
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/FileData/courseData.ser"));
-            courseMap = (Map<Integer, Course>) ois.readObject();
+            FileInputStream fis = new FileInputStream("src/FileData/courseData.ser");
+            int empty = fis.available();
+//            Prevent EOFException while reading empty file
+            if(empty !=  0){
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                courseMap = (Map<Integer, Course>) ois.readObject();
+                ois.close();
+                fis.close();
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e){
