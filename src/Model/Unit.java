@@ -4,23 +4,23 @@ import java.io.Serializable;
 
 
 public class Unit implements Serializable {
-    // Define all required attributes of unit
-    // This variable present for unique unit code
     private String code;
-    // This variable present for the unit name
     private String name;
-    // This variable present for the chief examiner
     private Staff examiner;
-    // This variable present for the lecturer
     private Staff lecturer;
-    // This variable present for the current semesterEnum
     private String semester;
-
-
     private int year;
 
 
-    // Getter and Setter of all variables
+    /*
+    Name: Getter and Setter
+    Purpose: Get and Set variables for model
+    Passed: model variables
+    Return: model variables
+    Input: none
+    Output:none
+    Effect: Get and Set variables
+    */
     public String getCode() {
         return code;
     }
@@ -51,7 +51,6 @@ public class Unit implements Serializable {
     public void setSemester(String semester) {
         this.semester = semester;
     }
-
     public int getYear() {
         return year;
     }

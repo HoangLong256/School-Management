@@ -54,6 +54,16 @@ public class CourseView implements Initializable {
     Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
     String  unitCode;
     Course selectedCourse;
+
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: load the table view of course, disable some buttons, get selected course if click on table
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -81,7 +91,15 @@ public class CourseView implements Initializable {
         loadTableView();
 
     }
-
+    /*
+    Name: loadTableView
+    Purpose: load data to table
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: load unit to table
+     */
     public void loadTableView(){
         courseMap = courseControl.loadData();
         courseList = new ArrayList<Course>(courseMap.values());
@@ -96,10 +114,28 @@ public class CourseView implements Initializable {
 
 
 
+    /*
+    Name: refresh
+    Purpose: refresh the table
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: refresh the table, load it again when it has new data
+     */
     public void Refresh(ActionEvent actionEvent) {
         loadTableView();
     }
 
+    /*
+    Name: deleteCourse
+    Purpose: delete selected course
+    Passed: action Event
+    Return: none
+    Input: none
+    Output: none
+    Effect: perform delete course
+     */
     public void deleteCourse(ActionEvent actionEvent) {
         courseControl.deleteCourse(selectedCourse.getcID());
         courseMap = courseControl.saveData();
@@ -109,6 +145,15 @@ public class CourseView implements Initializable {
         viewBtn.setDisable(true);
     }
 
+    /*
+    Name: assignUnit
+    Purpose: assign unit to selected course
+    Passed: action event
+    Return: true if success, false if failed
+    Input: none
+    Output: alert if get error or success
+    Effect: perform to assign unt
+     */
     public Boolean assignUnit(ActionEvent actionEvent) {
         unitCode = unitField.getText().toUpperCase();
         ArrayList<Unit> unitList = selectedCourse.getUnitList();
@@ -137,18 +182,45 @@ public class CourseView implements Initializable {
         return Boolean.TRUE;
     }
 
+    /*
+    Name: viewDetail
+    Purpose: view detail of course
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: open detail screen
+     */
     public void viewDetail(ActionEvent actionEvent) {
         CourseDetailView detailController = new CourseDetailView();
-        detailController.transferCourse(selectedCourse);
+        detailController.getSelectedCourse(selectedCourse);
         screenController.openScreen("courseDetail.fxml", "Course Detail");
     }
 
-    public void backHome(ActionEvent actionEvent) {
+    /*
+    Name: mainMenu
+    Purpose: back to main menu
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: back to main menu
+     */
+    public void mainMenu(ActionEvent actionEvent) {
         courseControl.saveData();
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }
 
+    /*
+    Name: addAction
+    Purpose: add course to database
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: open the add course screen
+     */
     public void addAction(ActionEvent actionEvent) {
         screenController.openScreen("addCourse.fxml", "Add Course");
 

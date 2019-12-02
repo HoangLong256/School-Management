@@ -58,6 +58,15 @@ public class AddUnitView implements Initializable {
     Alert alertError = new Alert(Alert.AlertType.ERROR);
     Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
 
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: set up screen and toggle group
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         unitMap = unitControl.loadData();
@@ -66,11 +75,29 @@ public class AddUnitView implements Initializable {
 
     }
 
+    /*
+    Name: closeAction
+    Purpose: close screen
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: close screen
+     */
     public void closeAction(ActionEvent actionEvent) {
         screenController.closeStage((Stage) closeBtn.getScene().getWindow());
 
     }
 
+    /*
+    Name: saveAction
+    Purpose: save unit to database
+    Passed: action event
+    Return: true if success, false if failed
+    Input: none
+    Output: alert
+    Effect: check validation then add unit to database
+     */
     public Boolean saveAction(ActionEvent actionEvent) {
         name = nameText.getText();
         examinerID = examinerIDText.getText();
@@ -130,6 +157,18 @@ public class AddUnitView implements Initializable {
         return Boolean.TRUE;
     }
 
+
+    /*
+    Name: idValidator
+    Purpose: validate the id
+    Passed: sh - unit shorthand
+            number - unit id digit
+            unitCode - unit code
+    Return: String if error
+    Input: none
+    Output: none
+    Effect: check unit code and return result
+     */
     public String unitCodeValidator(String sh,String number, String unitCode){
         if(sh.length() != 4){
             return "Unit Error: Shorthand must be 4 letters";
@@ -150,7 +189,16 @@ public class AddUnitView implements Initializable {
         }
     }
 
-    //    Staff Validation
+    /*
+    Name: staffValidator
+    Purpose: validate staff
+    Passed: examinerID - staffID
+            lecturerID - staffID
+    Return: String if error
+    Input: none
+    Output: none
+    Effect: validate the staff if
+     */
     public String staffValidator (String examinerID, String lecturerID){
         try {
             Integer.parseInt(examinerID);
@@ -165,6 +213,15 @@ public class AddUnitView implements Initializable {
         }
     }
 
+    /*
+    Name: clear
+    Purpose: clear the textfield
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: clear the form
+     */
     public void clear(){
         nameText.setText("");
         lecturerIDText.setText("");

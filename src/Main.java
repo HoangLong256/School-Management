@@ -13,6 +13,15 @@ import java.io.*;
 
 public class Main extends Application {
     ScreenController screenController = new ScreenController();
+    /*
+    Name:start
+    Purpose:Open Application
+    Passed:stage
+    Return:none
+    Input:none
+    Output:none
+    Effect: open the screen
+    */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FrontEnd/home.fxml"));
@@ -22,6 +31,17 @@ public class Main extends Application {
         stage.show();
     }
 
+
+
+    /*
+    Name: main
+    Purpose: Pre-processing before open the screen
+    Passed:args
+    Return:none
+    Input:none
+    Output:none
+    Effect: check the data file, use pre determined data process if it is possible
+    */
     public static void main(String[] args) throws IOException {
         StaffControl staffControl = StaffControl.getInstance();
         CourseControl courseControl = CourseControl.getInstance();
@@ -31,7 +51,6 @@ public class Main extends Application {
         if(!preDeterminedService.checkEmptyData()) {
             preDeterminedService.readDataFromFile();
             System.out.println("Pre Determined Data");
-            staffControl.displayStaffs();
         }
         System.out.println("Starting ... ");
         staffControl.loadData();

@@ -8,7 +8,17 @@ import java.util.Map;
 
 public class StaffService {
 
-//    Add Staff to database
+
+    /*
+    Name: addStaff
+    Purpose: add staff to database
+    Passed: staff - staff to add
+            staffMap - database
+    Return: True if success, false if failed
+    Input: none
+    Output: none
+    Effect: add staff
+     */
     public Boolean addStaff(Staff staff, Map<Integer, Staff> staffMap) {
         if(staffMap.containsKey(staff.getSid())) {
             System.out.println("Staff ID is already used");
@@ -18,12 +28,18 @@ public class StaffService {
         return Boolean.TRUE;
     }
 
-    
-    public void displayStaffs(Map<Integer, Staff> staffMap) {
-        staffMap.forEach((k,v) -> System.out.println(k + "\t\t" + v.getName()));
-    }
 
 
+    /*
+    Name: getStaffByID
+    Purpose: find staff in the database
+    Passed: sid- staff id
+            staffMap - database
+    Return: staff
+    Input: none
+    Output:none
+    Effect:find staff
+     */
     public Staff getStaffByID(Integer sid, Map<Integer, Staff> staffMap) {
         if(staffMap.containsKey(sid)) {
             return staffMap.get(sid);
@@ -31,7 +47,17 @@ public class StaffService {
         }
         return null;
     }
-    public void serializeStaff(Map<Integer, Staff> staffMap) {
+
+    /*
+    Name: writeData
+    Purpose: writeData to file
+    Passed: staffMap - staff database
+    Return:none
+    Input:none
+    Output:none
+    Effect: Write the map collection to file using serialize
+     */
+    public void writeData(Map<Integer, Staff> staffMap) {
         try {
             ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/staffData.ser"));
             oes.writeObject(staffMap);
@@ -39,7 +65,17 @@ public class StaffService {
             e.printStackTrace();
         }
     }
-    public Map<Integer, Staff>  deserializeStaff() {
+
+    /*
+    Name: readData
+    Purpose: read Data to file
+    Passed: none
+    Return:staffMap - database
+    Input:none
+    Output:none
+    Effect: read data from file using deserialize
+     */
+    public Map<Integer, Staff> readData() {
         Map<Integer, Staff> staffMap = null ;
         try {
             FileInputStream fis = new FileInputStream("src/FileData/staffData.ser");

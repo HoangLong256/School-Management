@@ -10,7 +10,16 @@ import java.util.Map;
 
 public class UnitService {
 
-
+    /*
+        Name: addUnit
+        Purpose: add unit to database
+        Passed: unit - unit to be added
+                unitMap - database
+        Return: true if success, false if failed
+        Input: none
+        Output: none
+        Effect: add unit
+     */
     public Boolean addUnit(Unit unit, Map<String, Unit> unitMap) {
 
         if(!unitMap.isEmpty() && unitMap.containsKey(unit.getCode())) {
@@ -22,31 +31,41 @@ public class UnitService {
         return Boolean.TRUE;
     }
 
-
-
-
-
+    /*
+    Name: deleteUnit
+    Purpose: delete unit from database
+    Passed: uid - unit id
+            unitMap - database
+    Return: true if success, false if failed
+    Input: none
+    Output: none
+    Effect: delete unit
+     */
     public Boolean deleteUnit(String uid,Map<String, Unit> unitMap) {
         String message;
         if(unitMap.isEmpty()) {
-            message = "There is currently none added unit";
             return Boolean.FALSE;
         }
         if(unitMap.containsKey(uid)) {
             unitMap.remove(uid);
-            message = "OK";
             return Boolean.TRUE;
         } else {
-            message = "Error";
             return Boolean.FALSE;
         }
 
     }
 
 
-
-
-
+    /*
+    Name: searchUnitByCode
+    Purpose: search unit in database
+    Passed: code - unit code
+            unitMap - database
+    Return: true if found , false if not
+    Input: none
+    Output: none
+    Effect: find unit
+     */
     public Boolean searchUnitCode(String code, Map<String, Unit> unitMap) {
         if(unitMap.containsKey(code)) {
             return Boolean.TRUE;
@@ -54,14 +73,33 @@ public class UnitService {
         return Boolean.FALSE;
     }
 
+    /*
+    Name: getUnitByCode
+    Purpose: get unit in database
+    Passed: code - unit code
+            unitMap - database
+    Return: found unit
+    Input: none
+    Output: none
+    Effect: get unit
+     */
     public Unit getUnitByCode(String code, Map<String, Unit> unitMap) {
-//        if(unitMap.containsKey(code)) {
+       if(unitMap.containsKey(code)) {
             return unitMap.get(code);
-//        }
-//        return null;
+        }
+       return null;
     }
 
-    public void serializeUnit(Map<String, Unit> unitMap) {
+    /*
+    Name: writeData
+    Purpose: writeData to file
+    Passed: unitMao - unit database
+    Return:none
+    Input:none
+    Output:none
+    Effect: Write the map collection to file using serialize
+     */
+    public void writeData(Map<String, Unit> unitMap) {
         try {
             ObjectOutputStream oes = new ObjectOutputStream(new FileOutputStream("src/FileData/unitData.ser"));
             oes.writeObject(unitMap);
@@ -71,7 +109,17 @@ public class UnitService {
 
         }
     }
-    public Map<String, Unit> deserializeUnit() {
+
+    /*
+    Name: readData
+    Purpose: read Data to file
+    Passed: none
+    Return:unitMap - database
+    Input:none
+    Output:none
+    Effect: read data from file using deserialize
+     */
+    public Map<String, Unit> readData() {
         Map<String, Unit> unitMap = new HashMap<>();
         try {
             FileInputStream fis = new FileInputStream("src/FileData/unitData.ser");
@@ -83,9 +131,6 @@ public class UnitService {
                 ois.close();
                 fis.close();
             }
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }catch (ClassNotFoundException e){

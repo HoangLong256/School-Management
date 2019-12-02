@@ -41,6 +41,15 @@ public class CourseDetailView implements Initializable {
     static Course selectedCourse;
     private ScreenController screenController = new ScreenController();
 
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: load the detail of selected course
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Staff director = selectedCourse.getDirector();
@@ -68,11 +77,29 @@ public class CourseDetailView implements Initializable {
     }
 
 
+    /*
+    Name: closeDetailAction
+    Purpose: close screen
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: close screen
+     */
     public void closeDetailAction(ActionEvent actionEvent) {
         screenController.closeStage((Stage) closeBtn.getScene().getWindow());
     }
 
-    public void transferCourse(Course course) {
+    /*
+    Name: getSelectedCourse
+    Purpose: get course from the courseView screen
+    Passed: course - the course to display detail
+    Return: none
+    Input: none
+    Output: none
+    Effect: set the course to selected course
+     */
+    public void getSelectedCourse(Course course) {
         selectedCourse = course;
     }
 

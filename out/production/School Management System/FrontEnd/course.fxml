@@ -89,7 +89,7 @@
                                     <Insets bottom="15.0" left="15.0" right="15.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="homeBtn" layoutX="25.0" layoutY="246.0" mnemonicParsing="false" onAction="#backHome" prefHeight="25.0" prefWidth="350.0" text="Main Menu" textAlignment="CENTER">
+                              <Button fx:id="homeBtn" layoutX="25.0" layoutY="246.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="25.0" prefWidth="350.0" text="Main Menu" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" />
                                  </VBox.margin>

@@ -17,6 +17,15 @@ public class StaffControl {
     private StaffControl(){};
 
 //    Singleton Pattern
+    /*
+    Name: getInstance
+    Purpose: to create only one object in the application lifetime
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: prevent this object is created outside
+     */
     public static synchronized StaffControl getInstance(){
         if(instance == null){
             instance = new StaffControl();
@@ -37,28 +46,60 @@ public class StaffControl {
     }
 
 
+    /*
+    Name: loadData()
+    Purpose: load data to database
+    Passed: none
+    Return: staffMap -database
+    Input: none
+    Output: none
+    Effect: assign data to courseMap
+     */
     public Map<Integer, Staff> loadData(){
-        staffMap = staffImp.deserializeStaff();
+        staffMap = staffImp.readData();
         return staffMap;
     }
 
+    /*
+    Name: saveData
+    Purpose: save data to map
+    Passed: none
+    Return: staffMap - database
+    Input: none
+    Output: none
+    Effect: write data to file
+     */
     public Map<Integer, Staff> saveData(){
-        staffImp.serializeStaff(staffMap);
+        staffImp.writeData(staffMap);
         return staffMap;
     }
 
+    /*
+    Name: getStaffMap and setStaffMap
+    Purpose: get and set courseMap
+    Passed: staffMap - database
+    Return: staffMap - database
+    Input: none
+    Output: none
+    Effect: getter and setter
+     */
     public Map<Integer, Staff> getStaffMap(){
         return  staffMap;
     }
-
     public void setStaffMap(Map<Integer, Staff> map){
         this.staffMap = map;
     }
 
-    public void displayStaffs(){
-        staffImp.displayStaffs(staffMap);
-    }
-
+    /*
+    Name: getStaffByID
+    Purpose: find staff in the database
+    Passed: sid- staff id
+            staffMap - database
+    Return: staff
+    Input: none
+    Output:none
+    Effect:find staff
+     */
     public Staff getStaffByID(Integer sid){
         return staffImp.getStaffByID(sid, staffMap);
     }

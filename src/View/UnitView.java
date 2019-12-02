@@ -45,7 +45,15 @@ public class UnitView implements Initializable {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Unit selectedUnit;
 
-
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: load the table view of unit, disable some buttons, get selected unit if click on table
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -70,7 +78,15 @@ public class UnitView implements Initializable {
     }
 
 
-
+    /*
+    Name: loadTableView
+    Purpose: load data to table
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: load unit to table
+     */
     public void loadTableView(){
         unitMap = unitControl.loadData();
         unitList = new ArrayList<Unit>(unitMap.values());
@@ -82,18 +98,45 @@ public class UnitView implements Initializable {
         unitTable.setItems(this.unitData);
     }
 
+    /*
+    Name: refresh
+    Purpose: refresh the table
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: refresh the table, load it again when it has new data
+     */
     public void refresh(ActionEvent actionEvent) {
         loadTableView();
     }
 
-    public void backHome(ActionEvent actionEvent) {
+
+    /*
+    Name: mainMenu
+    Purpose: back to main menu
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: back to main menu
+     */
+    public void mainMenu(ActionEvent actionEvent) {
         unitControl.saveData();
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }
 
 
-
+    /*
+    Name: deleteUnit
+    Purpose: delete Unit
+    Passed: action Event
+    Return: none
+    Input: none
+    Output: none
+    Effect: perform delete unit
+     */
     public void deleteUnit(ActionEvent actionEvent) {
         String code = selectedUnit.getCode();
         courseControl.removeUnit(code);
@@ -107,19 +150,43 @@ public class UnitView implements Initializable {
 
     }
 
+    /*
+    Name: showUnitDetail
+    Purpose: show selected unit code to textfield
+    Passed: unit
+    Return: none
+    Input: none
+    Output: none
+    Effect: set textfield to unit code
+     */
     public void showUnitDetail(Unit unit) {
-
         decodeField.setText(unit.getCode());
-
     }
 
-
+    /*
+    Name: viewDetailAction
+    Purpose: view detail of unit
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: open detail screen
+     */
     public void viewDetailAction(ActionEvent actionEvent){
         UnitDetailView detailController = new UnitDetailView();
         detailController.getSelectedUnit(selectedUnit);
         screenController.openScreen("unitDetail.fxml", "Unit Detail");
     }
 
+    /*
+    Name: addAction
+    Purpose: add unit to database
+    Passed: action event
+    Return: none
+    Input: none
+    Output: none
+    Effect: open the add unit screen
+     */
     public void addAction(ActionEvent actionEvent) {
         screenController.openScreen("addUnit.fxml", "Add Unit");
 

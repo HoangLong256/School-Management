@@ -5,6 +5,15 @@ import Controller.StaffControl;
 import java.io.*;
 
 public class PreDeterminedService {
+    /*
+    Name: readDataFromFile
+    Purpose: read data from provide file
+    Passed: none
+    Return:none
+    Input:none
+    Output:none
+    Effect: read data from file and save to staff map
+     */
     public void readDataFromFile() throws IOException {
         StaffControl staffControl = StaffControl.getInstance();
         File file = new File("src/FileData/staffs.txt");
@@ -25,6 +34,15 @@ public class PreDeterminedService {
         fr.close();
     }
 
+    /*
+    Name: checkEmptyData
+    Purpose: check staff file is empty or not
+    Passed:none
+    Return: false if empty, true if not
+    Input: none
+    Output: none
+    Effect: check empty for pre determined data process
+     */
     public Boolean checkEmptyData(){
         try {
             FileInputStream fis = new FileInputStream("src/FileData/staffData.ser");

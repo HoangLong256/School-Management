@@ -51,31 +51,45 @@ public class UnitDetailView implements Initializable{
     @FXML
     private TextArea courseNameArea;
 
-
+    /*
+    Name: closeDetailAction
+    Purpose: close screen
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: close screen
+     */
     public void closeDetailAction(ActionEvent event) {
         screenController.closeStage((Stage) closeBtn.getScene().getWindow());
 
     }
 
-
+    /*
+    Name: getSelectedUnit
+    Purpose: get unit from the unitView screen
+    Passed: unit - the unit to display detail
+    Return: none
+    Input: none
+    Output: none
+    Effect: set the unit to selected unit
+     */
     public void getSelectedUnit(Unit unit) {
         selectedUnit = unit;
     }
 
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: load the detail of selected unit
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-//        unitCodeArea.setText("Code \n");
-//        unitDetailArea.setText("Name \n");
-//
-//        ArrayList<Unit> unitList = selectedCourse.getUnitList();
-//        if(unitList != null) {
-//            for(int i = 0; i < unitList.size(); i++) {
-//                unitCodeArea.appendText("\n" + unitList.get(i).getCode());
-//                unitDetailArea.appendText("\n" + unitList.get(i).getName());
-//            }
-//        }
 
         Staff examiner = selectedUnit.getExaminer();
         Staff lecture = selectedUnit.getLecturer();

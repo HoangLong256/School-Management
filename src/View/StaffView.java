@@ -37,6 +37,15 @@ public class StaffView implements Initializable {
     @FXML
     private Button homeBtn;
 
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: load the table view of staff
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         staffControl.loadData();
@@ -46,25 +55,35 @@ public class StaffView implements Initializable {
 
 
 
-
+    /*
+    Name: loadStaff
+    Purpose: load data to table
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: load staff to table
+     */
     public void loadStaff() {
-        // Transform map to array list
         staffList = new ArrayList<Staff>(staffMap.values());
-        // Add list of staff to the observableArrayList
         staffData =  FXCollections.observableArrayList(staffList);
-
-        // Set column in array to present as different attributes of staff
         idColumn.setCellValueFactory(new PropertyValueFactory<Staff, Integer>("sid"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Staff, String>("name"));
         addColumn.setCellValueFactory(new PropertyValueFactory<Staff, String>("address"));
-
-        // Set the created list to the staff table
         staffTable.setItems(null);
         staffTable.setItems(this.staffData);
     }
 
-
-    public void backHome(ActionEvent actionEvent) {
+    /*
+    Name: mainMenu
+    Purpose: back to main menu
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: back to main menu
+     */
+    public void mainMenu(ActionEvent actionEvent) {
         screenController.openScreen("home.fxml", "Home Page");
         screenController.closeStage((Stage) homeBtn.getScene().getWindow());
     }

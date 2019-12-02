@@ -8,10 +8,29 @@ import java.io.IOException;
 
 public class ScreenController {
 
+    /*
+    Name: closeStage
+    Purpose: close screen
+    Passed: stage
+    Return: none
+    Input: none
+    Output: none
+    Effect: close screen
+     */
     public void closeStage(Stage stage){
         stage.close();
     }
 
+    /*
+    Name: openScreen
+    Purpose: open screen
+    Passed: filename - screen to open
+            title - title of screen
+    Return: none
+    Input: none
+    Output: none
+    Effect: open screen
+     */
     public void openScreen(String filename, String title) {
         Stage stage = new Stage();
         Scene scene = null;
@@ -28,7 +47,15 @@ public class ScreenController {
 
     }
 
-
+    /*
+        Name: closeProgram
+        Purpose: display message while closing screen
+        Passed: none
+        Return: none
+        Input: none
+        Output: message while closing
+        Effect: display message
+    */
     public void closeProgram(){
         System.out.println("Closing Screen");
     }

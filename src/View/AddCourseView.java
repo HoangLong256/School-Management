@@ -63,6 +63,15 @@ public class AddCourseView implements Initializable{
     Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
     String courseSh, courseID, name, campusLocation, programType, directorID, deputyID, courseCode;
 
+    /*
+    Name:initialize
+    Purpose: thing to do before loading screen
+    Passed: url, resourceBundle
+    Return: none
+    Input: none
+    Output: none
+    Effect: set up screen and toggle group
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -74,11 +83,29 @@ public class AddCourseView implements Initializable{
     }
 
 
+    /*
+    Name: closeAction
+    Purpose: close screen
+    Passed: actionEvent
+    Return: none
+    Input: none
+    Output: none
+    Effect: close screen
+     */
     public void closeAction(ActionEvent actionEvent) {
         screenController.closeStage((Stage) closeBtn.getScene().getWindow());
 
     }
 
+    /*
+    Name: saveAction
+    Purpose: save course to database
+    Passed: action event
+    Return: true if success, false if failed
+    Input: none
+    Output: alert
+    Effect: check validation then add course to database
+     */
     public Boolean saveAction(ActionEvent actionEvent) {
         courseID = idText.getText();
         courseSh = shText.getText().toUpperCase();
@@ -147,7 +174,17 @@ public class AddCourseView implements Initializable{
 //        screenController.closeStage((Stage) saveBtn.getScene().getWindow());
     }
 
-//    Staff Validation
+
+    /*
+    Name: staffValidator
+    Purpose: validate staff
+    Passed: deputyID - staffID
+            directorID - staffID
+    Return: String if error
+    Input: none
+    Output: none
+    Effect: validate the staff if
+     */
     public String staffValidator (String deputyID, String directorID){
         if(deputyID.equals(directorID)){
             return "Staff Error: DeputyID and DirectoryID must be difference";
@@ -166,7 +203,17 @@ public class AddCourseView implements Initializable{
         }
     }
 
-//    ID validation
+
+    /*
+    Name: idValidator
+    Purpose: validate the id
+    Passed: courseID - course ID
+            courseSh -shorthand
+    Return: String if error
+    Input: none
+    Output: none
+    Effect: check id and return result
+     */
     public String idValidator(String courseID, String courseSh){
         try{
             Integer.parseInt(courseID);
@@ -190,7 +237,15 @@ public class AddCourseView implements Initializable{
         }
     }
 
-//    Clear the text field
+    /*
+    Name: clear
+    Purpose: clear the textfield
+    Passed: none
+    Return: none
+    Input: none
+    Output: none
+    Effect: clear the form
+     */
     public void clear(){
         shText.setText("");
         idText.setText("");

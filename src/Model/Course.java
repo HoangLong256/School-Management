@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 public class Course implements Serializable {
 
-
-
     private int cID;
     private String code;
     private String name;
@@ -16,8 +14,15 @@ public class Course implements Serializable {
     private Staff deputy;
     private ArrayList<Unit> unitList;
 
-
-    // Getter and Setter for all above variables
+    /*
+    Name: Getter and Setter
+    Purpose: Get and Set variables for model
+    Passed: model variables
+    Return: model variables
+    Input: none
+    Output:none
+    Effect: Get and Set variables
+    */
     public String getCode() {
         return code;
     }
@@ -63,7 +68,6 @@ public class Course implements Serializable {
     public int getcID() {
         return cID;
     }
-
     public void setcID(int cID) {
         this.cID = cID;
     }
