@@ -1,7 +1,8 @@
 # School-Management
 
 ## Description
-This application is designed to manage the the courses as well as staffs of the School of Science and Technology, RMIT
+This application is designed to manage the the courses as well as staffs of the School of Science and Technology, RMIT.
+The details description can be found in the Assignment.pdf file
 
 ## Features
 - The program should provide a graphical user interface to the functionality 
